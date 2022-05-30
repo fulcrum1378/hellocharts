@@ -12,7 +12,7 @@ import ir.mahdiparastesh.hellocharts.model.LineChartData;
 import ir.mahdiparastesh.hellocharts.model.PointValue;
 import ir.mahdiparastesh.hellocharts.model.SelectedValue;
 import ir.mahdiparastesh.hellocharts.model.SelectedValue.SelectedValueType;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.provider.ColumnChartDataProvider;
 import ir.mahdiparastesh.hellocharts.provider.ComboLineColumnChartDataProvider;
 import ir.mahdiparastesh.hellocharts.provider.LineChartDataProvider;
@@ -65,7 +65,7 @@ public class ComboLineColumnChartView extends AbstractChartView
 
         if (selectedValue.isSet()) {
             if (SelectedValueType.COLUMN.equals(selectedValue.getType())) {
-                SubcolumnValue value = data.getColumnChartData().getColumns().get(selectedValue.getFirstIndex())
+                SubColumnValue value = data.getColumnChartData().getColumns().get(selectedValue.getFirstIndex())
                         .getValues().get(selectedValue.getSecondIndex());
                 onValueTouchListener.onColumnValueSelected(selectedValue.getFirstIndex(),
                         selectedValue.getSecondIndex(), value);

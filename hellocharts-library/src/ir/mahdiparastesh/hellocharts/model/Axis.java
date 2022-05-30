@@ -117,13 +117,9 @@ public class Axis {
             values.add(axisValue);
         }
 
-        Axis axis = new Axis(values);
-        return axis;
+        return new Axis(values);
     }
 
-    /**
-     * Generates Axis with values from given list.
-     */
     public static Axis generateAxisFromCollection(List<Float> axisValues) {
         List<AxisValue> values = new ArrayList<AxisValue>();
         int index = 0;
@@ -133,8 +129,7 @@ public class Axis {
             ++index;
         }
 
-        Axis axis = new Axis(values);
-        return axis;
+        return new Axis(values);
     }
 
     /**
@@ -153,8 +148,7 @@ public class Axis {
             ++index;
         }
 
-        Axis axis = new Axis(values);
-        return axis;
+        return new Axis(values);
     }
 
     public List<AxisValue> getValues() {
@@ -297,9 +291,7 @@ public class Axis {
         return hasTiltedLabels;
     }
 
-    public Axis setHasTiltedLabels(boolean hasTiltedLabels) {
+    public void setHasTiltedLabels(boolean hasTiltedLabels) {
         this.hasTiltedLabels = hasTiltedLabels;
-        return this;
     }
-
 }

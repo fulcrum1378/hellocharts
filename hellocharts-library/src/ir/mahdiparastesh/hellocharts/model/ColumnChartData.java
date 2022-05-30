@@ -41,11 +41,11 @@ public class ColumnChartData extends AbstractChartData {
         final int numColumns = 4;
         ColumnChartData data = new ColumnChartData();
         List<Column> columns = new ArrayList<Column>(numColumns);
-        List<SubcolumnValue> values;
+        List<SubColumnValue> values;
         Column column;
         for (int i = 1; i <= numColumns; ++i) {
-            values = new ArrayList<SubcolumnValue>(numColumns);
-            values.add(new SubcolumnValue(i));
+            values = new ArrayList<SubColumnValue>(numColumns);
+            values.add(new SubColumnValue(i));
             column = new Column(values);
             columns.add(column);
         }

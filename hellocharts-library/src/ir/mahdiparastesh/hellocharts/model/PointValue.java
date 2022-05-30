@@ -1,11 +1,12 @@
 package ir.mahdiparastesh.hellocharts.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
 public class PointValue {
-
     private float x;
     private float y;
     private float originX;
@@ -64,7 +65,7 @@ public class PointValue {
         return this.y;
     }
 
-    @Deprecated
+    //@Deprecated
     public char[] getLabel() {
         return label;
     }
@@ -78,12 +79,13 @@ public class PointValue {
         return label;
     }
 
-    @Deprecated
+    //@Deprecated
     public PointValue setLabel(char[] label) {
         this.label = label;
         return this;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PointValue [x=" + x + ", y=" + y + "]";
@@ -102,19 +104,17 @@ public class PointValue {
         if (Float.compare(that.originY, originY) != 0) return false;
         if (Float.compare(that.x, x) != 0) return false;
         if (Float.compare(that.y, y) != 0) return false;
-        if (!Arrays.equals(label, that.label)) return false;
-
-        return true;
+        return Arrays.equals(label, that.label);
     }
 
     @Override
     public int hashCode() {
-        int result = (x != +0.0f ? Float.floatToIntBits(x) : 0);
-        result = 31 * result + (y != +0.0f ? Float.floatToIntBits(y) : 0);
-        result = 31 * result + (originX != +0.0f ? Float.floatToIntBits(originX) : 0);
-        result = 31 * result + (originY != +0.0f ? Float.floatToIntBits(originY) : 0);
-        result = 31 * result + (diffX != +0.0f ? Float.floatToIntBits(diffX) : 0);
-        result = 31 * result + (diffY != +0.0f ? Float.floatToIntBits(diffY) : 0);
+        int result = (x != 0.0f ? Float.floatToIntBits(x) : 0);
+        result = 31 * result + (y != 0.0f ? Float.floatToIntBits(y) : 0);
+        result = 31 * result + (originX != 0.0f ? Float.floatToIntBits(originX) : 0);
+        result = 31 * result + (originY != 0.0f ? Float.floatToIntBits(originY) : 0);
+        result = 31 * result + (diffX != 0.0f ? Float.floatToIntBits(diffX) : 0);
+        result = 31 * result + (diffY != 0.0f ? Float.floatToIntBits(diffY) : 0);
         result = 31 * result + (label != null ? Arrays.hashCode(label) : 0);
         return result;
     }

@@ -9,7 +9,7 @@
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_subColumns"
-        android:title="Subcolumns"
+        android:title="SubColumns"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_stacked"

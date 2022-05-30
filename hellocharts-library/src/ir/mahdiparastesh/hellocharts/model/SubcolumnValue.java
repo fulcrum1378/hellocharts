@@ -1,15 +1,13 @@
 package ir.mahdiparastesh.hellocharts.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/**
- * Single sub-column value for ColumnChart.
- */
-public class SubcolumnValue {
-
+public class SubColumnValue {
     private float value;
     private float originValue;
     private float diff;
@@ -17,22 +15,22 @@ public class SubcolumnValue {
     private int darkenColor = ChartUtils.DEFAULT_DARKEN_COLOR;
     private char[] label;
 
-    public SubcolumnValue() {
+    public SubColumnValue() {
         setValue(0);
     }
 
-    public SubcolumnValue(float value) {
+    public SubColumnValue(float value) {
         // point and targetPoint have to be different objects
         setValue(value);
     }
 
-    public SubcolumnValue(float value, int color) {
+    public SubColumnValue(float value, int color) {
         // point and targetPoint have to be different objects
         setValue(value);
         setColor(color);
     }
 
-    public SubcolumnValue(SubcolumnValue columnValue) {
+    public SubColumnValue(SubColumnValue columnValue) {
         setValue(columnValue.value);
         setColor(columnValue.color);
         this.label = columnValue.label;
@@ -50,7 +48,7 @@ public class SubcolumnValue {
         return value;
     }
 
-    public SubcolumnValue setValue(float value) {
+    public SubColumnValue setValue(float value) {
         this.value = value;
         this.originValue = value;
         this.diff = 0;
@@ -59,11 +57,8 @@ public class SubcolumnValue {
 
     /**
      * Set target value that should be reached when data animation finish then call {@link Chart#startDataAnimation()}
-     *
-     * @param target
-     * @return
      */
-    public SubcolumnValue setTarget(float target) {
+    public SubColumnValue setTarget(float target) {
         setValue(value);
         this.diff = target - originValue;
         return this;
@@ -73,7 +68,7 @@ public class SubcolumnValue {
         return color;
     }
 
-    public SubcolumnValue setColor(int color) {
+    public SubColumnValue setColor(int color) {
         this.color = color;
         this.darkenColor = ChartUtils.darkenColor(color);
         return this;
@@ -83,12 +78,12 @@ public class SubcolumnValue {
         return darkenColor;
     }
 
-    @Deprecated
+    //@Deprecated
     public char[] getLabel() {
         return label;
     }
 
-    public SubcolumnValue setLabel(String label) {
+    public SubColumnValue setLabel(String label) {
         this.label = label.toCharArray();
         return this;
     }
@@ -97,12 +92,13 @@ public class SubcolumnValue {
         return label;
     }
 
-    @Deprecated
-    public SubcolumnValue setLabel(char[] label) {
+    //@Deprecated
+    public SubColumnValue setLabel(char[] label) {
         this.label = label;
         return this;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ColumnValue [value=" + value + "]";
@@ -113,23 +109,21 @@ public class SubcolumnValue {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SubcolumnValue that = (SubcolumnValue) o;
+        SubColumnValue that = (SubColumnValue) o;
 
         if (color != that.color) return false;
         if (darkenColor != that.darkenColor) return false;
         if (Float.compare(that.diff, diff) != 0) return false;
         if (Float.compare(that.originValue, originValue) != 0) return false;
         if (Float.compare(that.value, value) != 0) return false;
-        if (!Arrays.equals(label, that.label)) return false;
-
-        return true;
+        return Arrays.equals(label, that.label);
     }
 
     @Override
     public int hashCode() {
-        int result = (value != +0.0f ? Float.floatToIntBits(value) : 0);
-        result = 31 * result + (originValue != +0.0f ? Float.floatToIntBits(originValue) : 0);
-        result = 31 * result + (diff != +0.0f ? Float.floatToIntBits(diff) : 0);
+        int result = (value != 0.0f ? Float.floatToIntBits(value) : 0);
+        result = 31 * result + (originValue != 0.0f ? Float.floatToIntBits(originValue) : 0);
+        result = 31 * result + (diff != 0.0f ? Float.floatToIntBits(diff) : 0);
         result = 31 * result + color;
         result = 31 * result + darkenColor;
         result = 31 * result + (label != null ? Arrays.hashCode(label) : 0);

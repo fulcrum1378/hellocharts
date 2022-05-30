@@ -29,8 +29,8 @@ public class PreviewLineChartRenderer extends LineChartRenderer {
     }
 
     @Override
-    public void drawUnclipped(Canvas canvas) {
-        super.drawUnclipped(canvas);
+    public void drawUnClipped(Canvas canvas) {
+        super.drawUnClipped(canvas);
         final Viewport currentViewport = calculator.getCurrentViewport();
         final float left = calculator.computeRawX(currentViewport.left);
         final float top = calculator.computeRawY(currentViewport.top);

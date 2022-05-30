@@ -1,15 +1,15 @@
 package ir.mahdiparastesh.hellocharts.util;
 
 public class FloatUtils {
-    public static final int POW10[] = {1, 10, 100, 1000, 10000, 100000, 1000000};
+    public static final int[] POW10 = {1, 10, 100, 1000, 10000, 100000, 1000000};
 
     /**
      * Returns next bigger float value considering precision of the argument.
      */
     public static float nextUpF(float f) {
-        if (Float.isNaN(f) || f == Float.POSITIVE_INFINITY) {
+        if (Float.isNaN(f) || f == Float.POSITIVE_INFINITY)
             return f;
-        } else {
+        else {
             f += 0.0f;
             return Float.intBitsToFloat(Float.floatToRawIntBits(f) + ((f >= 0.0f) ? +1 : -1));
         }
@@ -49,11 +49,10 @@ public class FloatUtils {
         if (Double.isNaN(d) || d == Double.NEGATIVE_INFINITY) {
             return d;
         } else {
-            if (d == 0.0f) {
+            if (d == 0.0f)
                 return -Float.MIN_VALUE;
-            } else {
+            else
                 return Double.longBitsToDouble(Double.doubleToRawLongBits(d) + ((d > 0.0f) ? -1 : +1));
-            }
         }
     }
 
@@ -62,19 +61,12 @@ public class FloatUtils {
      */
     public static boolean almostEqual(float a, float b, float absoluteDiff, float relativeDiff) {
         float diff = Math.abs(a - b);
-        if (diff <= absoluteDiff) {
-            return true;
-        }
+        if (diff <= absoluteDiff) return true;
 
         a = Math.abs(a);
         b = Math.abs(b);
-        float largest = (a > b) ? a : b;
 
-        if (diff <= largest * relativeDiff) {
-            return true;
-        }
-
-        return false;
+        return diff <= Math.max(a, b) * relativeDiff;
     }
 
     /**
@@ -109,9 +101,6 @@ public class FloatUtils {
         if (value < 0) {
             negative = true;
             value = -value;
-        }
-        if (digits > POW10.length) {
-            digits = POW10.length - 1;
         }
         value *= POW10[digits];
         long lval = Math.round(value);
@@ -187,10 +176,8 @@ public class FloatUtils {
             outValues.values[valueIndex] = (float) intervalValue;
         }
 
-        if (interval < 1) {
+        if (interval < 1)
             outValues.decimals = (int) Math.ceil(-Math.log10(interval));
-        } else {
-            outValues.decimals = 0;
-        }
+        else outValues.decimals = 0;
     }
 }

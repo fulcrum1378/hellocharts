@@ -18,9 +18,6 @@ import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.util.FloatUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/**
- * Default axes renderer. Can draw maximum four axes - two horizontal(top/bottom) and two vertical(left/right).
- */
 public class AxesRenderer {
     private static final int DEFAULT_AXIS_MARGIN_DP = 2;
 
@@ -42,67 +39,66 @@ public class AxesRenderer {
             '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
             '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'};
 
-    private Chart chart;
+    private final Chart chart;
     private ChartCalculator calculator;
-    private int axisMargin;
-    private float density;
-    private float scaledDensity;
-    private Paint[] labelPaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
-    private Paint[] namePaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
-    private Paint[] linePaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
-    private float[] nameBaselineTab = new float[4];
-    private float[] labelBaselineTab = new float[4];
-    private float[] separationLineTab = new float[4];
-    private int[] labelWidthTab = new int[4];
-    private int[] labelTextAscentTab = new int[4];
-    private int[] labelTextDescentTab = new int[4];
-    private int[] labelDimensionForMarginsTab = new int[4];
-    private int[] labelDimensionForStepsTab = new int[4];
-    private int[] tiltedLabelXTranslation = new int[4];
-    private int[] tiltedLabelYTranslation = new int[4];
-    private FontMetricsInt[] fontMetricsTab = new FontMetricsInt[]{new FontMetricsInt(), new FontMetricsInt(),
+    private final int axisMargin;
+    private final float scaledDensity;
+    private final Paint[] labelPaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
+    private final Paint[] namePaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
+    private final Paint[] linePaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
+    private final float[] nameBaselineTab = new float[4];
+    private final float[] labelBaselineTab = new float[4];
+    private final float[] separationLineTab = new float[4];
+    private final int[] labelWidthTab = new int[4];
+    private final int[] labelTextAscentTab = new int[4];
+    private final int[] labelTextDescentTab = new int[4];
+    private final int[] labelDimensionForMarginsTab = new int[4];
+    private final int[] labelDimensionForStepsTab = new int[4];
+    private final int[] tiltedLabelXTranslation = new int[4];
+    private final int[] tiltedLabelYTranslation = new int[4];
+    private final FontMetricsInt[] fontMetricsTab = new FontMetricsInt[]{new FontMetricsInt(), new FontMetricsInt(),
             new FontMetricsInt(), new FontMetricsInt()};
     /**
      * Holds formatted axis value label.
      */
-    private char[] labelBuffer = new char[64];
+    private final char[] labelBuffer = new char[64];
 
     /**
      * Holds number of values that should be drown for each axis.
      */
-    private int[] valuesToDrawNumTab = new int[4];
+    private final int[] valuesToDrawNumTab = new int[4];
 
     /**
      * Holds raw values to draw for each axis.
      */
-    private float[][] rawValuesTab = new float[4][0];
+    private final float[][] rawValuesTab = new float[4][0];
 
     /**
      * Holds auto-generated values that should be drawn, i.e if axis is inside not all auto-generated values should be
      * drawn to avoid overdrawing. Used only for auto axes.
      */
-    private float[][] autoValuesToDrawTab = new float[4][0];
+    private final float[][] autoValuesToDrawTab = new float[4][0];
 
     /**
      * Holds custom values that should be drawn, used only for custom axes.
      */
-    private AxisValue[][] valuesToDrawTab = new AxisValue[4][0];
+    private final AxisValue[][] valuesToDrawTab = new AxisValue[4][0];
 
     /**
      * Buffers for axes lines coordinates(to draw grid in the background).
      */
-    private float[][] linesDrawBufferTab = new float[4][0];
+    private final float[][] linesDrawBufferTab = new float[4][0];
 
     /**
      * Buffers for auto-generated values for each axis, used only if there are auto axes.
      */
-    private AxisAutoValues[] autoValuesBufferTab = new AxisAutoValues[]{new AxisAutoValues(),
+    private final AxisAutoValues[] autoValuesBufferTab = new AxisAutoValues[]{new AxisAutoValues(),
             new AxisAutoValues(), new AxisAutoValues(), new AxisAutoValues()};
 
     public AxesRenderer(Context context, Chart chart) {
         this.chart = chart;
         calculator = chart.getChartCalculator();
-        density = context.getResources().getDisplayMetrics().density;
+        float density = context.getResources().getDisplayMetrics().density;
         scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
         axisMargin = ChartUtils.dp2px(density, DEFAULT_AXIS_MARGIN_DP);
         for (int position = 0; position < 4; ++position) {
@@ -328,11 +324,6 @@ public class AxesRenderer {
         }
     }
 
-    /**
-     * Prepare axes coordinates and draw axes lines(if enabled) in the background.
-     *
-     * @param canvas
-     */
     public void drawInBackground(Canvas canvas) {
         Axis axis = chart.getChartData().getAxisYLeft();
         if (null != axis) {
@@ -360,18 +351,11 @@ public class AxesRenderer {
     }
 
     private void prepareAxisToDraw(Axis axis, int position) {
-        if (axis.isAutoGenerated()) {
+        if (axis.isAutoGenerated())
             prepareAutoGeneratedAxis(axis, position);
-        } else {
-            prepareCustomAxis(axis, position);
-        }
+        else prepareCustomAxis(axis, position);
     }
 
-    /**
-     * Draw axes labels and names in the foreground.
-     *
-     * @param canvas
-     */
     public void drawInForeground(Canvas canvas) {
         Axis axis = chart.getChartData().getAxisYLeft();
         if (null != axis) {
@@ -511,18 +495,10 @@ public class AxesRenderer {
             if (isVertical) {
                 float marginBottom = labelTextAscentTab[BOTTOM] + axisMargin;
                 float marginTop = labelTextAscentTab[TOP] + axisMargin;
-                if (rawValue <= rect.bottom - marginBottom && rawValue >= rect.top + marginTop) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return rawValue <= rect.bottom - marginBottom && rawValue >= rect.top + marginTop;
             } else {
-                float margin = labelWidthTab[position] / 2;
-                if (rawValue >= rect.left + margin && rawValue <= rect.right - margin) {
-                    return true;
-                } else {
-                    return false;
-                }
+                float margin = labelWidthTab[position] / 2f;
+                return rawValue >= rect.left + margin && rawValue <= rect.right - margin;
             }
         }
         return true;
@@ -561,7 +537,7 @@ public class AxesRenderer {
                 } else {
                     lineX1 = lineX2 = rawValuesTab[position][valueToDrawIndex];
                 }
-                linesDrawBufferTab[position][valueToDrawIndex * 4 + 0] = lineX1;
+                linesDrawBufferTab[position][valueToDrawIndex * 4] = lineX1;
                 linesDrawBufferTab[position][valueToDrawIndex * 4 + 1] = lineY1;
                 linesDrawBufferTab[position][valueToDrawIndex * 4 + 2] = lineX2;
                 linesDrawBufferTab[position][valueToDrawIndex * 4 + 3] = lineY2;
@@ -581,7 +557,7 @@ public class AxesRenderer {
         }
 
         for (int valueToDrawIndex = 0; valueToDrawIndex < valuesToDrawNumTab[position]; ++valueToDrawIndex) {
-            int charsNumber = 0;
+            int charsNumber;
             if (axis.isAutoGenerated()) {
                 final float value = autoValuesToDrawTab[position][valueToDrawIndex];
                 charsNumber = axis.getFormatter().formatValueForAutoGeneratedAxis(labelBuffer, value,
@@ -635,5 +611,4 @@ public class AxesRenderer {
             throw new IllegalArgumentException("Invalid axis position " + position);
         }
     }
-
 }

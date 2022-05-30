@@ -20,7 +20,7 @@ import ir.mahdiparastesh.hellocharts.model.ColumnChartData;
 import ir.mahdiparastesh.hellocharts.model.Line;
 import ir.mahdiparastesh.hellocharts.model.LineChartData;
 import ir.mahdiparastesh.hellocharts.model.PointValue;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.model.Viewport;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.ColumnChartView;
@@ -66,17 +66,17 @@ public class LineColumnDependencyActivity extends AppCompatActivity {
 
         private void generateColumnData() {
 
-            int numSubcolumns = 1;
+            int numSubColumns = 1;
             int numColumns = months.length;
 
             List<AxisValue> axisValues = new ArrayList<>();
             List<Column> columns = new ArrayList<>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
                 values = new ArrayList<>();
-                for (int j = 0; j < numSubcolumns; ++j) {
-                    values.add(new SubcolumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
+                for (int j = 0; j < numSubColumns; ++j) {
+                    values.add(new SubColumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
                 }
 
                 axisValues.add(new AxisValue(i).setLabel(months[i]));
@@ -163,7 +163,7 @@ public class LineColumnDependencyActivity extends AppCompatActivity {
 
         private class ValueTouchListener implements ColumnChartOnValueSelectListener {
             @Override
-            public void onValueSelected(int columnIndex, int subColumnIndex, SubcolumnValue value) {
+            public void onValueSelected(int columnIndex, int subColumnIndex, SubColumnValue value) {
                 generateLineData(value.getColor(), 100);
             }
 

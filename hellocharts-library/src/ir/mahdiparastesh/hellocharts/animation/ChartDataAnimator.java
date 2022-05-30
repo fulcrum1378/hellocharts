@@ -2,14 +2,13 @@ package ir.mahdiparastesh.hellocharts.animation;
 
 public interface ChartDataAnimator {
 
-    public static final long DEFAULT_ANIMATION_DURATION = 500;
+    long DEFAULT_ANIMATION_DURATION = 500;
 
-    public void startAnimation(long duration);
+    void startAnimation(long duration);
 
-    public void cancelAnimation();
+    void cancelAnimation();
 
-    public boolean isAnimationStarted();
+    boolean isAnimationStarted();
 
-    public void setChartAnimationListener(ChartAnimationListener animationListener);
-
+    void setChartAnimationListener(ChartAnimationListener animationListener);
 }

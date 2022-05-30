@@ -165,7 +165,7 @@ public class PieChartRenderer extends AbstractChartRenderer {
     }
 
     @Override
-    public void drawUnclipped(Canvas canvas) {
+    public void drawUnClipped(Canvas canvas) {
     }
 
     @Override
@@ -324,11 +324,8 @@ public class PieChartRenderer extends AbstractChartRenderer {
             // Add additional touch feedback by setting bigger radius for that slice and darken color.
             drawCircleOval.inset(-touchAdditional, -touchAdditional);
             slicePaint.setColor(sliceValue.getDarkenColor());
-            canvas.drawArc(drawCircleOval, lastAngle, angle, true, slicePaint);
-        } else {
-            slicePaint.setColor(sliceValue.getColor());
-            canvas.drawArc(drawCircleOval, lastAngle, angle, true, slicePaint);
-        }
+        } else slicePaint.setColor(sliceValue.getColor());
+        canvas.drawArc(drawCircleOval, lastAngle, angle, true, slicePaint);
     }
 
     private void drawLabel(Canvas canvas, SliceValue sliceValue, float lastAngle, float angle) {

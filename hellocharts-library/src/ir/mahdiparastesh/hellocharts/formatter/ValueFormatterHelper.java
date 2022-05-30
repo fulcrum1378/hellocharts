@@ -1,7 +1,5 @@
 package ir.mahdiparastesh.hellocharts.formatter;
 
-import android.util.Log;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -9,7 +7,6 @@ import ir.mahdiparastesh.hellocharts.util.FloatUtils;
 
 public class ValueFormatterHelper {
     public static final int DEFAULT_DIGITS_NUMBER = 0;
-    private static final String TAG = "ValueFormatterHelper";
     private int decimalDigitsNumber = Integer.MIN_VALUE;
     private char[] appendedText = new char[0];
     private char[] prependedText = new char[0];
@@ -35,34 +32,31 @@ public class ValueFormatterHelper {
         return appendedText;
     }
 
-    public ValueFormatterHelper setAppendedText(char[] appendedText) {
+    public void setAppendedText(char[] appendedText) {
         if (null != appendedText) {
             this.appendedText = appendedText;
         }
-        return this;
     }
 
     public char[] getPrependedText() {
         return prependedText;
     }
 
-    public ValueFormatterHelper setPrependedText(char[] prependedText) {
+    public void setPrependedText(char[] prependedText) {
         if (null != prependedText) {
             this.prependedText = prependedText;
         }
-        return this;
     }
 
     public char getDecimalSeparator() {
         return decimalSeparator;
     }
 
-    public ValueFormatterHelper setDecimalSeparator(char decimalSeparator) {
+    public void setDecimalSeparator(char decimalSeparator) {
         char nullChar = '\0';
         if (nullChar != decimalSeparator) {
             this.decimalSeparator = decimalSeparator;
         }
-        return this;
     }
 
     /**
@@ -79,10 +73,8 @@ public class ValueFormatterHelper {
             // If custom label is not null use only name characters as formatted value.
             // Copy label into formatted value array.
             int labelLength = label.length;
-            if (labelLength > formattedValue.length) {
-                Log.w(TAG, "Label length is larger than buffer size(64chars), some chars will be skipped!");
+            if (labelLength > formattedValue.length)
                 labelLength = formattedValue.length;
-            }
             System.arraycopy(label, 0, formattedValue, formattedValue.length - labelLength, labelLength);
             return labelLength;
         }

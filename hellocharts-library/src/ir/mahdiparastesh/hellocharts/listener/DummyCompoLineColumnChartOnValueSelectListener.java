@@ -1,12 +1,12 @@
 package ir.mahdiparastesh.hellocharts.listener;
 
 import ir.mahdiparastesh.hellocharts.model.PointValue;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 
 public class DummyCompoLineColumnChartOnValueSelectListener implements ComboLineColumnChartOnValueSelectListener {
 
     @Override
-    public void onColumnValueSelected(int columnIndex, int subColumnIndex, SubcolumnValue value) {
+    public void onColumnValueSelected(int columnIndex, int subColumnIndex, SubColumnValue value) {
     }
 
     @Override

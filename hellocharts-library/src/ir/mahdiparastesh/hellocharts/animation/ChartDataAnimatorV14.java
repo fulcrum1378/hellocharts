@@ -4,14 +4,12 @@ import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.annotation.SuppressLint;
 
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-@SuppressLint("NewApi")
 public class ChartDataAnimatorV14 implements ChartDataAnimator, AnimatorListener, AnimatorUpdateListener {
     private final Chart chart;
-    private ValueAnimator animator;
+    private final ValueAnimator animator;
     private ChartAnimationListener animationListener = new DummyChartAnimationListener();
 
     public ChartDataAnimatorV14(Chart chart) {
@@ -23,11 +21,9 @@ public class ChartDataAnimatorV14 implements ChartDataAnimator, AnimatorListener
 
     @Override
     public void startAnimation(long duration) {
-        if (duration >= 0) {
+        if (duration >= 0)
             animator.setDuration(duration);
-        } else {
-            animator.setDuration(DEFAULT_ANIMATION_DURATION);
-        }
+        else animator.setDuration(DEFAULT_ANIMATION_DURATION);
         animator.start();
     }
 

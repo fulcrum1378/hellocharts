@@ -14,7 +14,7 @@ public class AxisValue {
         setValue(value);
     }
 
-    @Deprecated
+    //@Deprecated
     public AxisValue(float value, char[] label) {
         this.value = value;
         this.label = label;
@@ -34,7 +34,7 @@ public class AxisValue {
         return this;
     }
 
-    @Deprecated
+    //@Deprecated
     public char[] getLabel() {
         return label;
     }
@@ -58,7 +58,7 @@ public class AxisValue {
      *
      * @param label
      */
-    @Deprecated
+    //@Deprecated
     public AxisValue setLabel(char[] label) {
         this.label = label;
         return this;
@@ -72,9 +72,7 @@ public class AxisValue {
         AxisValue axisValue = (AxisValue) o;
 
         if (Float.compare(axisValue.value, value) != 0) return false;
-        if (!Arrays.equals(label, axisValue.label)) return false;
-
-        return true;
+        return Arrays.equals(label, axisValue.label);
     }
 
     @Override

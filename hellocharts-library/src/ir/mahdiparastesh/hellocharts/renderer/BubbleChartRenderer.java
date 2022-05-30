@@ -23,12 +23,12 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
     private static final int MODE_DRAW = 0;
     private static final int MODE_HIGHLIGHT = 1;
 
-    private BubbleChartDataProvider dataProvider;
+    private final BubbleChartDataProvider dataProvider;
 
     /**
      * Additional value added to bubble radius when drawing highlighted bubble, used to give tauch feedback.
      */
-    private int touchAdditional;
+    private final int touchAdditional;
 
     /**
      * Scales for bubble radius value, only one is used depending on screen orientation;
@@ -52,18 +52,18 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
      * Minimal bubble radius in pixels.
      */
     private float minRawRadius;
-    private PointF bubbleCenter = new PointF();
-    private Paint bubblePaint = new Paint();
+    private final PointF bubbleCenter = new PointF();
+    private final Paint bubblePaint = new Paint();
 
     /**
      * Rect used for drawing bubbles with SHAPE_SQUARE.
      */
-    private RectF bubbleRect = new RectF();
+    private final RectF bubbleRect = new RectF();
 
     private boolean hasLabels;
     private boolean hasLabelsOnlyForSelected;
     private BubbleChartValueFormatter valueFormatter;
-    private Viewport tempMaximumViewport = new Viewport();
+    private final Viewport tempMaximumViewport = new Viewport();
 
     public BubbleChartRenderer(Context context, Chart chart, BubbleChartDataProvider dataProvider) {
         super(context, chart);
@@ -73,18 +73,13 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
 
         bubblePaint.setAntiAlias(true);
         bubblePaint.setStyle(Paint.Style.FILL);
-
     }
 
     @Override
     public void onChartSizeChanged() {
         final ChartCalculator calculator = chart.getChartCalculator();
         Rect contentRect = calculator.getContentRectMinusAllMargins();
-        if (contentRect.width() < contentRect.height()) {
-            isBubbleScaledByX = true;
-        } else {
-            isBubbleScaledByX = false;
-        }
+        isBubbleScaledByX = contentRect.width() < contentRect.height();
     }
 
     @Override
@@ -116,7 +111,7 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
     }
 
     @Override
-    public void drawUnclipped(Canvas canvas) {
+    public void drawUnClipped(Canvas canvas) {
     }
 
     @Override
@@ -125,7 +120,7 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
         final BubbleChartData data = dataProvider.getBubbleChartData();
         int valueIndex = 0;
         for (BubbleValue bubbleValue : data.getValues()) {
-            float rawRadius = processBubble(bubbleValue, bubbleCenter);
+            float rawRadius = processBubble(bubbleValue);
 
             if (ValueShape.SQUARE.equals(bubbleValue.getShape())) {
                 if (bubbleRect.contains(touchX, touchY)) {
@@ -190,7 +185,7 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
     }
 
     private void drawBubble(Canvas canvas, BubbleValue bubbleValue) {
-        float rawRadius = processBubble(bubbleValue, bubbleCenter);
+        float rawRadius = processBubble(bubbleValue);
         // Not touched bubbles are a little smaller than touched to give user touch feedback.
         rawRadius -= touchAdditional;
         bubbleRect.inset(touchAdditional, touchAdditional);
@@ -228,7 +223,7 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
     }
 
     private void highlightBubble(Canvas canvas, BubbleValue bubbleValue) {
-        float rawRadius = processBubble(bubbleValue, bubbleCenter);
+        float rawRadius = processBubble(bubbleValue);
         bubblePaint.setColor(bubbleValue.getDarkenColor());
         drawBubbleShapeAndLabel(canvas, bubbleValue, rawRadius, MODE_HIGHLIGHT);
     }
@@ -237,7 +232,7 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
      * Calculate bubble radius and center x and y coordinates. Center x and x will be stored in point parameter, radius
      * will be returned as float value.
      */
-    private float processBubble(BubbleValue bubbleValue, PointF point) {
+    private float processBubble(BubbleValue bubbleValue) {
         final float rawX = calculator.computeRawX(bubbleValue.getX());
         final float rawY = calculator.computeRawY(bubbleValue.getY());
         float radius = (float) Math.sqrt(Math.abs(bubbleValue.getZ()) / Math.PI);
@@ -274,8 +269,8 @@ public class BubbleChartRenderer extends AbstractChartRenderer {
         final int labelHeight = Math.abs(fontMetrics.ascent);
         float left = rawX - labelWidth / 2 - labelMargin;
         float right = rawX + labelWidth / 2 + labelMargin;
-        float top = rawY - labelHeight / 2 - labelMargin;
-        float bottom = rawY + labelHeight / 2 + labelMargin;
+        float top = rawY - labelHeight / 2f - labelMargin;
+        float bottom = rawY + labelHeight / 2f + labelMargin;
 
         if (top < contentRect.top) {
             top = rawY;

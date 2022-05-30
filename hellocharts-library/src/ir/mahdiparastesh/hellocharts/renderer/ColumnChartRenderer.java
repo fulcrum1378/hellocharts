@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import ir.mahdiparastesh.hellocharts.model.Column;
 import ir.mahdiparastesh.hellocharts.model.ColumnChartData;
 import ir.mahdiparastesh.hellocharts.model.SelectedValue.SelectedValueType;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.model.Viewport;
 import ir.mahdiparastesh.hellocharts.provider.ColumnChartDataProvider;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
@@ -102,15 +102,15 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
                 highlightColumnForStacked(canvas);
             }
         } else {
-            drawColumnsForSubcolumns(canvas);
+            drawColumnsForSubColumns(canvas);
             if (isTouched()) {
-                highlightColumnsForSubcolumns(canvas);
+                highlightColumnsForSubColumns(canvas);
             }
         }
     }
 
     @Override
-    public void drawUnclipped(Canvas canvas) {
+    public void drawUnClipped(Canvas canvas) {
         // Do nothing, for this kind of chart there is nothing to draw beyond clipped area
     }
 
@@ -120,7 +120,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         if (data.isStacked()) {
             checkTouchForStacked(touchX, touchY);
         } else {
-            checkTouchForSubcolumns(touchX, touchY);
+            checkTouchForSubColumns(touchX, touchY);
         }
         return isTouched();
     }
@@ -134,13 +134,13 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         if (data.isStacked()) {
             calculateMaxViewportForStacked(data);
         } else {
-            calculateMaxViewportForSubcolumns(data);
+            calculateMaxViewportForSubColumns(data);
         }
     }
 
-    private void calculateMaxViewportForSubcolumns(ColumnChartData data) {
+    private void calculateMaxViewportForSubColumns(ColumnChartData data) {
         for (Column column : data.getColumns()) {
-            for (SubcolumnValue columnValue : column.getValues()) {
+            for (SubColumnValue columnValue : column.getValues()) {
                 if (columnValue.getValue() >= baseValue && columnValue.getValue() > tempMaximumViewport.top) {
                     tempMaximumViewport.top = columnValue.getValue();
                 }
@@ -155,7 +155,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         for (Column column : data.getColumns()) {
             float sumPositive = baseValue;
             float sumNegative = baseValue;
-            for (SubcolumnValue columnValue : column.getValues()) {
+            for (SubColumnValue columnValue : column.getValues()) {
                 if (columnValue.getValue() >= baseValue) {
                     sumPositive += columnValue.getValue();
                 } else {
@@ -171,24 +171,24 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         }
     }
 
-    private void drawColumnsForSubcolumns(Canvas canvas) {
+    private void drawColumnsForSubColumns(Canvas canvas) {
         final ColumnChartData data = dataProvider.getColumnChartData();
         final float columnWidth = calculateColumnWidth();
         int columnIndex = 0;
         for (Column column : data.getColumns()) {
-            processColumnForSubcolumns(canvas, column, columnWidth, columnIndex, MODE_DRAW);
+            processColumnForSubColumns(canvas, column, columnWidth, columnIndex, MODE_DRAW);
             ++columnIndex;
         }
     }
 
-    private void highlightColumnsForSubcolumns(Canvas canvas) {
+    private void highlightColumnsForSubColumns(Canvas canvas) {
         final ColumnChartData data = dataProvider.getColumnChartData();
         final float columnWidth = calculateColumnWidth();
         Column column = data.getColumns().get(selectedValue.getFirstIndex());
-        processColumnForSubcolumns(canvas, column, columnWidth, selectedValue.getFirstIndex(), MODE_HIGHLIGHT);
+        processColumnForSubColumns(canvas, column, columnWidth, selectedValue.getFirstIndex(), MODE_HIGHLIGHT);
     }
 
-    private void checkTouchForSubcolumns(float touchX, float touchY) {
+    private void checkTouchForSubColumns(float touchX, float touchY) {
         // Using member variable to hold touch point to avoid too much parameters in methods.
         touchedPoint.x = touchX;
         touchedPoint.y = touchY;
@@ -197,12 +197,12 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         int columnIndex = 0;
         for (Column column : data.getColumns()) {
             // canvas is not needed for checking touch
-            processColumnForSubcolumns(null, column, columnWidth, columnIndex, MODE_CHECK_TOUCH);
+            processColumnForSubColumns(null, column, columnWidth, columnIndex, MODE_CHECK_TOUCH);
             ++columnIndex;
         }
     }
 
-    private void processColumnForSubcolumns(Canvas canvas, Column column, float columnWidth, int columnIndex,
+    private void processColumnForSubColumns(Canvas canvas, Column column, float columnWidth, int columnIndex,
                                             int mode) {
         // For n subColumns there will be n-1 spacing and there will be one
         // subColumn for every columnValue
@@ -219,7 +219,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         // rawValueX is horizontal center of that column
         float subColumnRawX = rawX - halfColumnWidth;
         int valueIndex = 0;
-        for (SubcolumnValue columnValue : column.getValues()) {
+        for (SubColumnValue columnValue : column.getValues()) {
             columnPaint.setColor(columnValue.getColor());
             if (subColumnRawX > rawX + halfColumnWidth) {
                 break;
@@ -228,10 +228,10 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
             calculateRectToDraw(columnValue, subColumnRawX, subColumnRawX + subColumnWidth, baseRawY, rawY);
             switch (mode) {
                 case MODE_DRAW:
-                    drawSubcolumn(canvas, column, columnValue, false);
+                    drawSubColumn(canvas, column, columnValue, false);
                     break;
                 case MODE_HIGHLIGHT:
-                    highlightSubcolumn(canvas, column, columnValue, valueIndex, false);
+                    highlightSubColumn(canvas, column, columnValue, valueIndex, false);
                     break;
                 case MODE_CHECK_TOUCH:
                     checkRectToDraw(columnIndex, valueIndex);
@@ -285,7 +285,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         float mostNegativeValue = baseValue;
         float subColumnBaseValue = baseValue;
         int valueIndex = 0;
-        for (SubcolumnValue columnValue : column.getValues()) {
+        for (SubColumnValue columnValue : column.getValues()) {
             columnPaint.setColor(columnValue.getColor());
             if (columnValue.getValue() >= baseValue) {
                 // Using values instead of raw pixels make code easier to
@@ -301,10 +301,10 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
             calculateRectToDraw(columnValue, rawX - halfColumnWidth, rawX + halfColumnWidth, rawBaseY, rawY);
             switch (mode) {
                 case MODE_DRAW:
-                    drawSubcolumn(canvas, column, columnValue, true);
+                    drawSubColumn(canvas, column, columnValue, true);
                     break;
                 case MODE_HIGHLIGHT:
-                    highlightSubcolumn(canvas, column, columnValue, valueIndex, true);
+                    highlightSubColumn(canvas, column, columnValue, valueIndex, true);
                     break;
                 case MODE_CHECK_TOUCH:
                     checkRectToDraw(columnIndex, valueIndex);
@@ -318,14 +318,14 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         }
     }
 
-    private void drawSubcolumn(Canvas canvas, Column column, SubcolumnValue columnValue, boolean isStacked) {
+    private void drawSubColumn(Canvas canvas, Column column, SubColumnValue columnValue, boolean isStacked) {
         canvas.drawRect(drawRect, columnPaint);
         if (column.hasLabels()) {
             drawLabel(canvas, column, columnValue, isStacked, labelOffset);
         }
     }
 
-    private void highlightSubcolumn(Canvas canvas, Column column, SubcolumnValue columnValue, int valueIndex,
+    private void highlightSubColumn(Canvas canvas, Column column, SubColumnValue columnValue, int valueIndex,
                                     boolean isStacked) {
         if (selectedValue.getSecondIndex() == valueIndex) {
             columnPaint.setColor(columnValue.getDarkenColor());
@@ -353,7 +353,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         return columnWidth;
     }
 
-    private void calculateRectToDraw(SubcolumnValue columnValue, float left, float right, float rawBaseY, float rawY) {
+    private void calculateRectToDraw(SubColumnValue columnValue, float left, float right, float rawBaseY, float rawY) {
         // Calculate rect that will be drawn as column, subColumn or label background.
         drawRect.left = left;
         drawRect.right = right;
@@ -366,7 +366,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         }
     }
 
-    private void drawLabel(Canvas canvas, Column column, SubcolumnValue columnValue, boolean isStacked, float offset) {
+    private void drawLabel(Canvas canvas, Column column, SubColumnValue columnValue, boolean isStacked, float offset) {
         final int numChars = column.getFormatter().formatChartValue(labelBuffer, columnValue);
 
         if (numChars == 0) {

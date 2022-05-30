@@ -5,59 +5,52 @@ import android.graphics.Canvas;
 import ir.mahdiparastesh.hellocharts.model.SelectedValue;
 import ir.mahdiparastesh.hellocharts.model.Viewport;
 
-/**
- * Interface for all chart renderer.
- */
 public interface ChartRenderer {
 
-    public void onChartSizeChanged();
+    void onChartSizeChanged();
 
-    public void onChartDataChanged();
+    void onChartDataChanged();
 
-    public void onChartViewportChanged();
+    void onChartViewportChanged();
 
-    public void resetRenderer();
+    void resetRenderer();
 
-    /**
-     * Draw chart data.
-     */
     public void draw(Canvas canvas);
 
     /**
      * Draw chart data that should not be clipped to contentRect area.
      */
-    public void drawUnclipped(Canvas canvas);
+    public void drawUnClipped(Canvas canvas);
 
     /**
      * Checks if given pixel coordinates corresponds to any chart value. If yes return true and set selectedValue, if
      * not selectedValue should be *cleared* and method should return false.
      */
-    public boolean checkTouch(float touchX, float touchY);
+    boolean checkTouch(float touchX, float touchY);
 
     /**
      * Returns true if there is value selected.
      */
-    public boolean isTouched();
+    boolean isTouched();
 
     /**
      * Clear value selection.
      */
-    public void clearTouch();
+    void clearTouch();
 
-    public Viewport getMaximumViewport();
+    Viewport getMaximumViewport();
 
-    public void setMaximumViewport(Viewport maxViewport);
+    void setMaximumViewport(Viewport maxViewport);
 
-    public Viewport getCurrentViewport();
+    Viewport getCurrentViewport();
 
-    public void setCurrentViewport(Viewport viewport);
+    void setCurrentViewport(Viewport viewport);
 
-    public boolean isViewportCalculationEnabled();
+    boolean isViewportCalculationEnabled();
 
-    public void setViewportCalculationEnabled(boolean isEnabled);
+    void setViewportCalculationEnabled(boolean isEnabled);
 
-    public void selectValue(SelectedValue selectedValue);
+    void selectValue(SelectedValue selectedValue);
 
-    public SelectedValue getSelectedValue();
-
+    SelectedValue getSelectedValue();
 }

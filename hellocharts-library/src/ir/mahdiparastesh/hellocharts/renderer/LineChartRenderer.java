@@ -130,7 +130,7 @@ public class LineChartRenderer extends AbstractChartRenderer {
     }
 
     @Override
-    public void drawUnclipped(Canvas canvas) {
+    public void drawUnClipped(Canvas canvas) {
         final LineChartData data = dataProvider.getLineChartData();
         int lineIndex = 0;
         for (Line line : data.getLines()) {

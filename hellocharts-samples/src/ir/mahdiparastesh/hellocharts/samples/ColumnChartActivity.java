@@ -21,7 +21,7 @@ import ir.mahdiparastesh.hellocharts.listener.ColumnChartOnValueSelectListener;
 import ir.mahdiparastesh.hellocharts.model.Axis;
 import ir.mahdiparastesh.hellocharts.model.Column;
 import ir.mahdiparastesh.hellocharts.model.ColumnChartData;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 import ir.mahdiparastesh.hellocharts.view.ColumnChartView;
@@ -158,16 +158,16 @@ public class ColumnChartActivity extends AppCompatActivity {
         }
 
         private void generateDefaultData() {
-            int numSubcolumns = 1;
+            int numSubColumns = 1;
             int numColumns = 8;
             // Column can have many subColumns, here by default I use 1 subColumn in each of 8 columns.
             List<Column> columns = new ArrayList<Column>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubcolumnValue>();
-                for (int j = 0; j < numSubcolumns; ++j) {
-                    values.add(new SubcolumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
+                values = new ArrayList<SubColumnValue>();
+                for (int j = 0; j < numSubColumns; ++j) {
+                    values.add(new SubColumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -199,17 +199,17 @@ public class ColumnChartActivity extends AppCompatActivity {
         /**
          * Generates columns with subColumns, columns have larger separation than subColumns.
          */
-        private void generateSubcolumnsData() {
-            int numSubcolumns = 4;
+        private void generateSubColumnsData() {
+            int numSubColumns = 4;
             int numColumns = 4;
             // Column can have many subColumns, here I use 4 subColumn in each of 8 columns.
             List<Column> columns = new ArrayList<Column>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubcolumnValue>();
-                for (int j = 0; j < numSubcolumns; ++j) {
-                    values.add(new SubcolumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
+                values = new ArrayList<SubColumnValue>();
+                for (int j = 0; j < numSubColumns; ++j) {
+                    values.add(new SubColumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -242,16 +242,16 @@ public class ColumnChartActivity extends AppCompatActivity {
          * Generates columns with stacked subColumns.
          */
         private void generateStackedData() {
-            int numSubcolumns = 4;
+            int numSubColumns = 4;
             int numColumns = 8;
             // Column can have many stacked subColumns, here I use 4 stacke subColumn in each of 4 columns.
             List<Column> columns = new ArrayList<Column>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubcolumnValue>();
-                for (int j = 0; j < numSubcolumns; ++j) {
-                    values.add(new SubcolumnValue((float) Math.random() * 20f + 5, ChartUtils.pickColor()));
+                values = new ArrayList<SubColumnValue>();
+                for (int j = 0; j < numSubColumns; ++j) {
+                    values.add(new SubColumnValue((float) Math.random() * 20f + 5, ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -282,18 +282,18 @@ public class ColumnChartActivity extends AppCompatActivity {
             chart.setColumnChartData(data);
         }
 
-        private void generateNegativeSubcolumnsData() {
+        private void generateNegativeSubColumnsData() {
 
-            int numSubcolumns = 4;
+            int numSubColumns = 4;
             int numColumns = 4;
             List<Column> columns = new ArrayList<Column>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubcolumnValue>();
-                for (int j = 0; j < numSubcolumns; ++j) {
+                values = new ArrayList<SubColumnValue>();
+                for (int j = 0; j < numSubColumns; ++j) {
                     int sign = getSign();
-                    values.add(new SubcolumnValue((float) Math.random() * 50f * sign + 5 * sign, ChartUtils.pickColor
+                    values.add(new SubColumnValue((float) Math.random() * 50f * sign + 5 * sign, ChartUtils.pickColor
                             ()));
                 }
 
@@ -324,17 +324,17 @@ public class ColumnChartActivity extends AppCompatActivity {
 
         private void generateNegativeStackedData() {
 
-            int numSubcolumns = 4;
+            int numSubColumns = 4;
             int numColumns = 8;
             // Column can have many stacked subColumns, here I use 4 stacke subColumn in each of 4 columns.
             List<Column> columns = new ArrayList<Column>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubcolumnValue>();
-                for (int j = 0; j < numSubcolumns; ++j) {
+                values = new ArrayList<SubColumnValue>();
+                for (int j = 0; j < numSubColumns; ++j) {
                     int sign = getSign();
-                    values.add(new SubcolumnValue((float) Math.random() * 20f * sign + 5 * sign, ChartUtils.pickColor()));
+                    values.add(new SubColumnValue((float) Math.random() * 20f * sign + 5 * sign, ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -376,13 +376,13 @@ public class ColumnChartActivity extends AppCompatActivity {
                     generateDefaultData();
                     break;
                 case SUBCOLUMNS_DATA:
-                    generateSubcolumnsData();
+                    generateSubColumnsData();
                     break;
                 case STACKED_DATA:
                     generateStackedData();
                     break;
                 case NEGATIVE_SUBCOLUMNS_DATA:
-                    generateNegativeSubcolumnsData();
+                    generateNegativeSubColumnsData();
                     break;
                 case NEGATIVE_STACKED_DATA:
                     generateNegativeStackedData();
@@ -433,7 +433,7 @@ public class ColumnChartActivity extends AppCompatActivity {
          */
         private void prepareDataAnimation() {
             for (Column column : data.getColumns()) {
-                for (SubcolumnValue value : column.getValues()) {
+                for (SubColumnValue value : column.getValues()) {
                     value.setTarget((float) Math.random() * 100);
                 }
             }
@@ -442,7 +442,7 @@ public class ColumnChartActivity extends AppCompatActivity {
         private class ValueTouchListener implements ColumnChartOnValueSelectListener {
 
             @Override
-            public void onValueSelected(int columnIndex, int subColumnIndex, SubcolumnValue value) {
+            public void onValueSelected(int columnIndex, int subColumnIndex, SubColumnValue value) {
                 Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
             }
 

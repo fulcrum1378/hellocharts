@@ -108,7 +108,7 @@ public class ChartCalculator {
      * Sets the current viewport (defined by {@link #currentViewport}) to the given X and Y positions.
      */
     public void setViewportTopLeft(float left, float top) {
-        /**
+        /*
          * Constrains within the scroll range. The scroll range is simply the viewport extremes (AXIS_X_MAX,
          * etc.) minus
          * the viewport size. For example, if the extrema were 0 and 10, and the viewport size was 2, the scroll range
@@ -195,20 +195,12 @@ public class ChartCalculator {
      * Check if given coordinates lies inside contentRectMinusAllMargins.
      */
     public boolean isWithinContentRect(float x, float y, float precision) {
-        if (x >= contentRectMinusAllMargins.left - precision && x <= contentRectMinusAllMargins.right + precision) {
-            if (y <= contentRectMinusAllMargins.bottom + precision && y >= contentRectMinusAllMargins.top -
-                    precision) {
-                return true;
-            }
-        }
+        if (x >= contentRectMinusAllMargins.left - precision && x <= contentRectMinusAllMargins.right + precision)
+            return y <= contentRectMinusAllMargins.bottom + precision && y >= contentRectMinusAllMargins.top -
+                    precision;
         return false;
     }
 
-    /**
-     * Returns content rectangle in pixels.
-     *
-     * @see #setContentRect(int, int, int, int, int, int)
-     */
     public Rect getContentRectMinusAllMargins() {
         return contentRectMinusAllMargins;
     }
@@ -226,8 +218,6 @@ public class ChartCalculator {
 
     /**
      * Returns current chart viewport, returned object is mutable but should not be modified.
-     *
-     * @return
      */
     public Viewport getCurrentViewport() {
         return currentViewport;
@@ -236,8 +226,6 @@ public class ChartCalculator {
     /**
      * Set current viewport to the same values as viewport passed in parameter. This method use deep copy so parameter
      * can be safely modified later. Current viewport must be equal or smaller than maximum viewport.
-     *
-     * @param viewport
      */
     public void setCurrentViewport(Viewport viewport) {
         constrainViewport(viewport.left, viewport.top, viewport.right, viewport.bottom);
@@ -261,8 +249,6 @@ public class ChartCalculator {
     /**
      * Set maximum viewport to the same values as viewport passed in parameter. This method use deep copy so parameter
      * can be safely modified later.
-     *
-     * @param maxViewport
      */
     public void setMaxViewport(Viewport maxViewport) {
         setMaxViewport(maxViewport.left, maxViewport.top, maxViewport.right, maxViewport.bottom);
@@ -278,8 +264,6 @@ public class ChartCalculator {
 
     /**
      * Returns viewport for visible part of chart, for most charts it is equal to current viewport.
-     *
-     * @return
      */
     public Viewport getVisibleViewport() {
         return currentViewport;
@@ -319,8 +303,6 @@ public class ChartCalculator {
 
     /**
      * Set maximum zoom level, default is 20.
-     *
-     * @param maxZoom
      */
     public void setMaxZoom(float maxZoom) {
         if (maxZoom < 1) {
@@ -339,5 +321,4 @@ public class ChartCalculator {
         minViewportWidth = this.maxViewport.width() / maxZoom;
         minViewportHeight = this.maxViewport.height() / maxZoom;
     }
-
 }

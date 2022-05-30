@@ -7,16 +7,13 @@ import android.view.MotionEvent;
 import ir.mahdiparastesh.hellocharts.calculator.ChartCalculator;
 import ir.mahdiparastesh.hellocharts.model.Viewport;
 
-/**
- * Encapsulates zooming functionality.
- */
 public class ChartZoomer {
     public static final float ZOOM_AMOUNT = 0.25f;
-    private ZoomerCompat zoomer;
+    private final ZoomerCompat zoomer;
     private ZoomType zoomType;
-    private PointF zoomFocalPoint = new PointF();// Used for double tap zoom
-    private PointF viewportFocus = new PointF();
-    private Viewport scrollerStartViewport = new Viewport(); // Used only for zooms and flings
+    private final PointF zoomFocalPoint = new PointF();// Used for double tap zoom
+    private final PointF viewportFocus = new PointF();
+    private final Viewport scrollerStartViewport = new Viewport(); // Used only for zooms and flings
 
     public ChartZoomer(Context context, ZoomType zoomType) {
         zoomer = new ZoomerCompat();
@@ -55,9 +52,6 @@ public class ChartZoomer {
     }
 
     public boolean scale(ChartCalculator calculator, float focusX, float focusY, float scale) {
-        /**
-         * Smaller viewport means bigger zoom so for zoomIn scale should have value <1, for zoomOout >1
-         */
         final float newWidth = scale * calculator.getCurrentViewport().width();
         final float newHeight = scale * calculator.getCurrentViewport().height();
         if (!calculator.rawPixelsToDataPoint(focusX, focusY, viewportFocus)) {

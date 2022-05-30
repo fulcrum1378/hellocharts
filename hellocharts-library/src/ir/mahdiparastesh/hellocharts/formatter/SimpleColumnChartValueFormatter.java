@@ -1,10 +1,10 @@
 package ir.mahdiparastesh.hellocharts.formatter;
 
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 
 public class SimpleColumnChartValueFormatter implements ColumnChartValueFormatter {
 
-    private ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
+    private final ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
 
     public SimpleColumnChartValueFormatter() {
         valueFormatterHelper.determineDecimalSeparator();
@@ -16,7 +16,7 @@ public class SimpleColumnChartValueFormatter implements ColumnChartValueFormatte
     }
 
     @Override
-    public int formatChartValue(char[] formattedValue, SubcolumnValue value) {
+    public int formatChartValue(char[] formattedValue, SubColumnValue value) {
         return valueFormatterHelper.formatFloatValueWithPrependedAndAppendedText(formattedValue, value.getValue(),
                 value.getLabelAsChars());
     }

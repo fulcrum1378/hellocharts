@@ -10,8 +10,8 @@ import ir.mahdiparastesh.hellocharts.view.Chart;
  */
 public class SliceValue {
     private static final int DEFAULT_SLICE_SPACING_DP = 2;
-    @Deprecated
-    /** Spacing between this slice and its neighbors. */
+    //@Deprecated
+    /* Spacing between this slice and its neighbors. */
     private int sliceSpacing = DEFAULT_SLICE_SPACING_DP;
     /**
      * Current value of this slice.
@@ -109,23 +109,23 @@ public class SliceValue {
         return darkenColor;
     }
 
-    @Deprecated
+    //@Deprecated
     public int getSliceSpacing() {
         return sliceSpacing;
     }
 
-    @Deprecated
+    //@Deprecated
     public SliceValue setSliceSpacing(int sliceSpacing) {
         this.sliceSpacing = sliceSpacing;
         return this;
     }
 
-    @Deprecated
+    //@Deprecated
     public char[] getLabel() {
         return label;
     }
 
-    @Deprecated
+    //@Deprecated
     public SliceValue setLabel(char[] label) {
         this.label = label;
         return this;
@@ -158,9 +158,7 @@ public class SliceValue {
         if (Float.compare(that.originValue, originValue) != 0) return false;
         if (sliceSpacing != that.sliceSpacing) return false;
         if (Float.compare(that.value, value) != 0) return false;
-        if (!Arrays.equals(label, that.label)) return false;
-
-        return true;
+        return Arrays.equals(label, that.label);
     }
 
     @Override

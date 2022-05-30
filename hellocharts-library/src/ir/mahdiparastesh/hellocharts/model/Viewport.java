@@ -87,9 +87,7 @@ public class Viewport implements Parcelable {
             return false;
         if (Float.floatToIntBits(right) != Float.floatToIntBits(other.right))
             return false;
-        if (Float.floatToIntBits(top) != Float.floatToIntBits(other.top))
-            return false;
-        return true;
+        return Float.floatToIntBits(top) == Float.floatToIntBits(other.top);
     }
 
     /**

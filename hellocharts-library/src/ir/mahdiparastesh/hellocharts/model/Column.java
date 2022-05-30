@@ -7,25 +7,17 @@ import ir.mahdiparastesh.hellocharts.formatter.ColumnChartValueFormatter;
 import ir.mahdiparastesh.hellocharts.formatter.SimpleColumnChartValueFormatter;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/**
- * Single column for ColumnChart. One column can be divided into multiple sub-columns(ColumnValues) especially for
- * stacked ColumnChart.
- * Note: you can set X value for columns or sub-columns, columns are by default indexed from 0 to numOfColumns-1 and
- * column index is used as column X value, so first column has X value 0, second clumn has X value 1 etc.
- * If you want to display AxisValue for given column you should initialize AxisValue with X value of that column.
- */
 public class Column {
     private boolean hasLabels = false;
     private boolean hasLabelsOnlyForSelected = false;
     private ColumnChartValueFormatter formatter = new SimpleColumnChartValueFormatter();
     // TODO: consider Collections.emptyList()
-    private List<SubcolumnValue> values = new ArrayList<SubcolumnValue>();
+    private List<SubColumnValue> values = new ArrayList<>();
 
     public Column() {
-
     }
 
-    public Column(List<SubcolumnValue> values) {
+    public Column(List<SubColumnValue> values) {
         setValues(values);
     }
 
@@ -34,31 +26,31 @@ public class Column {
         this.hasLabelsOnlyForSelected = column.hasLabelsOnlyForSelected;
         this.formatter = column.formatter;
 
-        for (SubcolumnValue columnValue : column.values) {
-            this.values.add(new SubcolumnValue(columnValue));
+        for (SubColumnValue columnValue : column.values) {
+            this.values.add(new SubColumnValue(columnValue));
         }
     }
 
     public void update(float scale) {
-        for (SubcolumnValue value : values) {
+        for (SubColumnValue value : values) {
             value.update(scale);
         }
 
     }
 
     public void finish() {
-        for (SubcolumnValue value : values) {
+        for (SubColumnValue value : values) {
             value.finish();
         }
     }
 
-    public List<SubcolumnValue> getValues() {
+    public List<SubColumnValue> getValues() {
         return values;
     }
 
-    public Column setValues(List<SubcolumnValue> values) {
+    public Column setValues(List<SubColumnValue> values) {
         if (null == values) {
-            this.values = new ArrayList<SubcolumnValue>();
+            this.values = new ArrayList<>();
         } else {
             this.values = values;
         }

@@ -2,14 +2,13 @@ package ir.mahdiparastesh.hellocharts.animation;
 
 public interface PieChartRotationAnimator {
 
-    public static final int FAST_ANIMATION_DURATION = 200;
+    int FAST_ANIMATION_DURATION = 200;
 
-    public void startAnimation(float startAngle, float angleToRotate);
+    void startAnimation(float startAngle, float angleToRotate);
 
-    public void cancelAnimation();
+    void cancelAnimation();
 
-    public boolean isAnimationStarted();
+    boolean isAnimationStarted();
 
-    public void setChartAnimationListener(ChartAnimationListener animationListener);
-
+    void setChartAnimationListener(ChartAnimationListener animationListener);
 }

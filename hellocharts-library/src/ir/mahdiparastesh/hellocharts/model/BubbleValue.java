@@ -143,7 +143,7 @@ public class BubbleValue {
         return this;
     }
 
-    @Deprecated
+    //@Deprecated
     public char[] getLabel() {
         return label;
     }
@@ -157,7 +157,7 @@ public class BubbleValue {
         return label;
     }
 
-    @Deprecated
+    //@Deprecated
     public BubbleValue setLabel(char[] label) {
         this.label = label;
         return this;
@@ -187,9 +187,7 @@ public class BubbleValue {
         if (Float.compare(that.y, y) != 0) return false;
         if (Float.compare(that.z, z) != 0) return false;
         if (!Arrays.equals(label, that.label)) return false;
-        if (shape != that.shape) return false;
-
-        return true;
+        return shape == that.shape;
     }
 
     @Override

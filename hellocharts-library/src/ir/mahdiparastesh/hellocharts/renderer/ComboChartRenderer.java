@@ -62,9 +62,9 @@ public class ComboChartRenderer extends AbstractChartRenderer {
     }
 
     @Override
-    public void drawUnclipped(Canvas canvas) {
+    public void drawUnClipped(Canvas canvas) {
         for (ChartRenderer renderer : renderers) {
-            renderer.drawUnclipped(canvas);
+            renderer.drawUnClipped(canvas);
         }
     }
 

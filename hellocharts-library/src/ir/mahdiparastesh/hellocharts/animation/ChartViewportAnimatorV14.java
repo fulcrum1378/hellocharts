@@ -4,18 +4,16 @@ import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.annotation.SuppressLint;
 
 import ir.mahdiparastesh.hellocharts.model.Viewport;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-@SuppressLint("NewApi")
 public class ChartViewportAnimatorV14 implements ChartViewportAnimator, AnimatorListener, AnimatorUpdateListener {
     private final Chart chart;
-    private ValueAnimator animator;
-    private Viewport startViewport = new Viewport();
-    private Viewport targetViewport = new Viewport();
-    private Viewport newViewport = new Viewport();
+    private final ValueAnimator animator;
+    private final Viewport startViewport = new Viewport();
+    private final Viewport targetViewport = new Viewport();
+    private final Viewport newViewport = new Viewport();
     private ChartAnimationListener animationListener = new DummyChartAnimationListener();
 
     public ChartViewportAnimatorV14(Chart chart) {
@@ -85,11 +83,8 @@ public class ChartViewportAnimatorV14 implements ChartViewportAnimator, Animator
 
     @Override
     public void setChartAnimationListener(ChartAnimationListener animationListener) {
-        if (null == animationListener) {
+        if (null == animationListener)
             this.animationListener = new DummyChartAnimationListener();
-        } else {
-            this.animationListener = animationListener;
-        }
+        else this.animationListener = animationListener;
     }
-
 }

@@ -1,8 +1,7 @@
 package ir.mahdiparastesh.hellocharts.model;
 
-/**
- * Holds selected values indexes, i.e. for LineChartModel it will be firstIndex=lineIndex; secondIndex=valueIndex.
- */
+import androidx.annotation.NonNull;
+
 public class SelectedValue {
 
     /**
@@ -52,11 +51,7 @@ public class SelectedValue {
      * Return true if selected value have meaningful value.
      */
     public boolean isSet() {
-        if (firstIndex >= 0 && secondIndex >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return firstIndex >= 0 && secondIndex >= 0;
     }
 
     /**
@@ -117,6 +112,7 @@ public class SelectedValue {
         return true;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "SelectedValue [firstIndex=" + firstIndex + ", secondIndex=" + secondIndex + ", type=" + type + "]";
@@ -128,5 +124,4 @@ public class SelectedValue {
     public enum SelectedValueType {
         NONE, LINE, COLUMN
     }
-
 }

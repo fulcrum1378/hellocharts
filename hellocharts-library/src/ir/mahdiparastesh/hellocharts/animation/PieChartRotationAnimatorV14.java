@@ -4,14 +4,13 @@ import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.annotation.SuppressLint;
 
 import ir.mahdiparastesh.hellocharts.view.PieChartView;
 
-@SuppressLint("NewApi")
-public class PieChartRotationAnimatorV14 implements PieChartRotationAnimator, AnimatorListener, AnimatorUpdateListener {
+public class PieChartRotationAnimatorV14 implements PieChartRotationAnimator,
+        AnimatorListener, AnimatorUpdateListener {
     private final PieChartView chart;
-    private ValueAnimator animator;
+    private final ValueAnimator animator;
     private float startRotation = 0;
     private float targetRotation = 0;
     private ChartAnimationListener animationListener = new DummyChartAnimationListener();
@@ -74,11 +73,8 @@ public class PieChartRotationAnimatorV14 implements PieChartRotationAnimator, An
 
     @Override
     public void setChartAnimationListener(ChartAnimationListener animationListener) {
-        if (null == animationListener) {
+        if (null == animationListener)
             this.animationListener = new DummyChartAnimationListener();
-        } else {
-            this.animationListener = animationListener;
-        }
+        else this.animationListener = animationListener;
     }
-
 }

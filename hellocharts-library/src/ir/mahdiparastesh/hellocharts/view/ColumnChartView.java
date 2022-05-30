@@ -7,7 +7,7 @@ import ir.mahdiparastesh.hellocharts.listener.ColumnChartOnValueSelectListener;
 import ir.mahdiparastesh.hellocharts.listener.DummyColumnChartOnValueSelectListener;
 import ir.mahdiparastesh.hellocharts.model.ColumnChartData;
 import ir.mahdiparastesh.hellocharts.model.SelectedValue;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.provider.ColumnChartDataProvider;
 import ir.mahdiparastesh.hellocharts.renderer.ColumnChartRenderer;
 
@@ -54,7 +54,7 @@ public class ColumnChartView extends AbstractChartView implements ColumnChartDat
         SelectedValue selectedValue = chartRenderer.getSelectedValue();
 
         if (selectedValue.isSet()) {
-            SubcolumnValue value = data.getColumns().get(selectedValue.getFirstIndex()).getValues()
+            SubColumnValue value = data.getColumns().get(selectedValue.getFirstIndex()).getValues()
                     .get(selectedValue.getSecondIndex());
             onValueTouchListener.onValueSelected(selectedValue.getFirstIndex(), selectedValue.getSecondIndex(), value);
         } else {

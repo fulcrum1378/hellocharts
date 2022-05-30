@@ -12,9 +12,6 @@ import ir.mahdiparastesh.hellocharts.model.SelectedValue;
 import ir.mahdiparastesh.hellocharts.renderer.ChartRenderer;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/**
- * Default touch handler for most charts. Handles value touch, scroll, fling and zoom.
- */
 public class ChartTouchHandler {
     protected GestureDetector gestureDetector;
     protected ScaleGestureDetector scaleGestureDetector;
@@ -68,13 +65,9 @@ public class ChartTouchHandler {
      * scroll/zoom was computed and chart needs to be invalidated.
      */
     public boolean computeScroll() {
-        boolean needInvalidate = false;
-        if (isScrollEnabled && chartScroller.computeScrollOffset(calculator)) {
+        boolean needInvalidate = isScrollEnabled && chartScroller.computeScrollOffset(calculator);
+        if (isZoomEnabled && chartZoomer.computeZoom(calculator))
             needInvalidate = true;
-        }
-        if (isZoomEnabled && chartZoomer.computeZoom(calculator)) {
-            needInvalidate = true;
-        }
         return needInvalidate;
     }
 

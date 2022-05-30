@@ -29,7 +29,7 @@ import ir.mahdiparastesh.hellocharts.model.LineChartData;
 import ir.mahdiparastesh.hellocharts.model.PieChartData;
 import ir.mahdiparastesh.hellocharts.model.PointValue;
 import ir.mahdiparastesh.hellocharts.model.SliceValue;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.model.Viewport;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.BubbleChartView;
@@ -197,16 +197,16 @@ public class ViewPagerChartsActivity extends AppCompatActivity implements Action
         }
 
         private ColumnChartData generateColumnChartData() {
-            int numSubcolumns = 1;
+            int numSubColumns = 1;
             int numColumns = 12;
             // Column can have many subColumns, here by default I use 1 subColumn in each of 8 columns.
             List<Column> columns = new ArrayList<>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
                 values = new ArrayList<>();
-                for (int j = 0; j < numSubcolumns; ++j) {
-                    values.add(new SubcolumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
+                for (int j = 0; j < numSubColumns; ++j) {
+                    values.add(new SubColumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
                 }
 
                 columns.add(new Column(values));

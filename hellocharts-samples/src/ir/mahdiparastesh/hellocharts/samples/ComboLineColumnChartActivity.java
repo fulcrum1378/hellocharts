@@ -24,7 +24,7 @@ import ir.mahdiparastesh.hellocharts.model.ComboLineColumnChartData;
 import ir.mahdiparastesh.hellocharts.model.Line;
 import ir.mahdiparastesh.hellocharts.model.LineChartData;
 import ir.mahdiparastesh.hellocharts.model.PointValue;
-import ir.mahdiparastesh.hellocharts.model.SubcolumnValue;
+import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.ComboLineColumnChartView;
 
@@ -183,15 +183,15 @@ public class ComboLineColumnChartActivity extends AppCompatActivity {
         }
 
         private ColumnChartData generateColumnData() {
-            int numSubcolumns = 1;
+            int numSubColumns = 1;
             int numColumns = 12;
             // Column can have many subColumns, here by default I use 1 subColumn in each of 8 columns.
             List<Column> columns = new ArrayList<>();
-            List<SubcolumnValue> values;
+            List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
                 values = new ArrayList<>();
-                for (int j = 0; j < numSubcolumns; ++j) {
-                    values.add(new SubcolumnValue((float) Math.random() * 50 + 5, ChartUtils.COLOR_GREEN));
+                for (int j = 0; j < numSubColumns; ++j) {
+                    values.add(new SubColumnValue((float) Math.random() * 50 + 5, ChartUtils.COLOR_GREEN));
                 }
                 columns.add(new Column(values));
             }
@@ -251,7 +251,7 @@ public class ComboLineColumnChartActivity extends AppCompatActivity {
 
             // Columns animations
             for (Column column : data.getColumnChartData().getColumns()) {
-                for (SubcolumnValue value : column.getValues()) {
+                for (SubColumnValue value : column.getValues()) {
                     value.setTarget((float) Math.random() * 50 + 5);
                 }
             }
@@ -265,7 +265,7 @@ public class ComboLineColumnChartActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onColumnValueSelected(int columnIndex, int subColumnIndex, SubcolumnValue value) {
+            public void onColumnValueSelected(int columnIndex, int subColumnIndex, SubColumnValue value) {
                 Toast.makeText(getActivity(), "Selected column: " + value, Toast.LENGTH_SHORT).show();
             }
 
