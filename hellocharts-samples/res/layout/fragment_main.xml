@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="lecho.lib.hellocharts.samples.MainActivity$PlaceholderFragment" >
+    tools:context="ir.mahdiparastesh.hellocharts.samples.MainActivity$PlaceholderFragment" >
 
     <ListView
         android:id="@android:id/list"

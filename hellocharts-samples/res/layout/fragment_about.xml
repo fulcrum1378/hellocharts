@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,7 +12,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="lecho.lib.hellocharts.samples.AboutActivity$PlaceholderFragment" >
+        tools:context="ir.mahdiparastesh.hellocharts.samples.AboutActivity$PlaceholderFragment" >
 
         <ImageView
             android:id="@+id/app_icon"
@@ -20,7 +21,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="16dp"
             android:contentDescription="@string/about_app_icon_content_description"
-            android:src="@drawable/ic_launcher" />
+            app:srcCompat="@drawable/ic_launcher" />
 
         <TextView
             android:id="@+id/app_name"

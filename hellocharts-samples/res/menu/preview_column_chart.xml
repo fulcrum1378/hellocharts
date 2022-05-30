@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="lecho.lib.hellocharts.samples.PreviewColumnChartActivity" >
+    tools:context="ir.mahdiparastesh.hellocharts.samples.PreviewColumnChartActivity" >
 
     <item
         android:id="@+id/action_reset"

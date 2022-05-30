@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="lecho.lib.hellocharts.samples.ColumnChartActivity" >
+    tools:context="ir.mahdiparastesh.hellocharts.samples.ColumnChartActivity" >
 
     <item
         android:id="@+id/action_reset"
         android:title="Reset chart"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/action_subcolumns"
+        android:id="@+id/action_subColumns"
         android:title="Subcolumns"
         app:showAsAction="never"/>
     <item
@@ -16,8 +16,8 @@
         android:title="Stacked"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/action_negative_subcolumns"
-        android:title="Negative subcolumns"
+        android:id="@+id/action_negative_subColumns"
+        android:title="Negative subColumns"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_negative_stacked"

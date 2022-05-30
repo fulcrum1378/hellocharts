@@ -6,12 +6,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="lecho.lib.hellocharts.samples.PieChartActivity$PlaceholderFragment" >
+    tools:context="ir.mahdiparastesh.hellocharts.samples.PieChartActivity$PlaceholderFragment" >
 
-    <lecho.lib.hellocharts.view.PieChartView
+    <ir.mahdiparastesh.hellocharts.view.PieChartView
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    </lecho.lib.hellocharts.view.PieChartView>
+    </ir.mahdiparastesh.hellocharts.view.PieChartView>
 
 </RelativeLayout>
