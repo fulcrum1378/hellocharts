@@ -109,12 +109,12 @@ public class PointValue {
 
     @Override
     public int hashCode() {
-        int result = (x != 0.0f ? Float.floatToIntBits(x) : 0);
-        result = 31 * result + (y != 0.0f ? Float.floatToIntBits(y) : 0);
-        result = 31 * result + (originX != 0.0f ? Float.floatToIntBits(originX) : 0);
-        result = 31 * result + (originY != 0.0f ? Float.floatToIntBits(originY) : 0);
-        result = 31 * result + (diffX != 0.0f ? Float.floatToIntBits(diffX) : 0);
-        result = 31 * result + (diffY != 0.0f ? Float.floatToIntBits(diffY) : 0);
+        int result = (x != 0f ? Float.floatToIntBits(x) : 0);
+        result = 31 * result + (y != 0f ? Float.floatToIntBits(y) : 0);
+        result = 31 * result + (originX != 0f ? Float.floatToIntBits(originX) : 0);
+        result = 31 * result + (originY != 0f ? Float.floatToIntBits(originY) : 0);
+        result = 31 * result + (diffX != 0f ? Float.floatToIntBits(diffX) : 0);
+        result = 31 * result + (diffY != 0f ? Float.floatToIntBits(diffY) : 0);
         result = 31 * result + (label != null ? Arrays.hashCode(label) : 0);
         return result;
     }

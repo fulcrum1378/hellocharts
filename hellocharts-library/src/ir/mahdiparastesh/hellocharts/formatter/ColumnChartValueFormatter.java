@@ -4,6 +4,5 @@ import ir.mahdiparastesh.hellocharts.model.SubColumnValue;
 
 public interface ColumnChartValueFormatter {
 
-    public int formatChartValue(char[] formattedValue, SubColumnValue value);
-
+    int formatChartValue(char[] formattedValue, SubColumnValue value);
 }

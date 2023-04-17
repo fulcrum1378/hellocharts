@@ -7,9 +7,9 @@ import java.util.List;
  * Data model for LineChartView.
  */
 public class LineChartData extends AbstractChartData {
-    public static final float DEFAULT_BASE_VALUE = 0.0f;
+    public static final float DEFAULT_BASE_VALUE = 0f;
 
-    private List<Line> lines = new ArrayList<Line>();
+    private List<Line> lines = new ArrayList<>();
     private float baseValue = DEFAULT_BASE_VALUE;
 
     public LineChartData() {
@@ -35,13 +35,13 @@ public class LineChartData extends AbstractChartData {
     public static LineChartData generateDummyData() {
         final int numValues = 4;
         LineChartData data = new LineChartData();
-        List<PointValue> values = new ArrayList<PointValue>(numValues);
+        List<PointValue> values = new ArrayList<>(numValues);
         values.add(new PointValue(0, 2));
         values.add(new PointValue(1, 4));
         values.add(new PointValue(2, 3));
         values.add(new PointValue(3, 4));
         Line line = new Line(values);
-        List<Line> lines = new ArrayList<Line>(1);
+        List<Line> lines = new ArrayList<>(1);
         lines.add(line);
         data.setLines(lines);
         return data;
@@ -67,7 +67,7 @@ public class LineChartData extends AbstractChartData {
 
     public LineChartData setLines(List<Line> lines) {
         if (null == lines) {
-            this.lines = new ArrayList<Line>();
+            this.lines = new ArrayList<>();
         } else {
             this.lines = lines;
         }

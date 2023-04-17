@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             ListView listView = rootView.findViewById(android.R.id.list);
-            ChartSamplesAdapter adapter = new ChartSamplesAdapter(getActivity(), 0, generateSamplesDescriptions());
+            ChartSamplesAdapter adapter = new ChartSamplesAdapter(
+                    getActivity(), 0, generateSamplesDescriptions());
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(this);
             return rootView;
@@ -89,68 +90,63 @@ public class MainActivity extends AppCompatActivity {
             Intent intent;
 
             switch (position) {
-                case 0:
+                case 0 -> {
                     // Line Chart;
                     intent = new Intent(getActivity(), LineChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     // Column Chart;
                     intent = new Intent(getActivity(), ColumnChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     // Pie Chart;
                     intent = new Intent(getActivity(), PieChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     // Bubble Chart;
                     intent = new Intent(getActivity(), BubbleChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     // Preview Line Chart;
                     intent = new Intent(getActivity(), PreviewLineChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     // Preview Column Chart;
                     intent = new Intent(getActivity(), PreviewColumnChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     // Combo Chart;
                     intent = new Intent(getActivity(), ComboLineColumnChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 7:
+                }
+                case 7 -> {
                     // Line Column Dependency;
                     intent = new Intent(getActivity(), LineColumnDependencyActivity.class);
                     startActivity(intent);
-                    break;
-                case 8:
+                }
+                case 8 -> {
                     // Tempo line chart;
                     intent = new Intent(getActivity(), TempoChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 9:
+                }
+                case 9 -> {
                     // Speed line chart;
                     intent = new Intent(getActivity(), SpeedChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 10:
+                }
+                case 10 -> {
                     // Good Bad filled line chart;
                     intent = new Intent(getActivity(), GoodBadChartActivity.class);
                     startActivity(intent);
-                    break;
-                case 11:
-                    // Good Bad filled line chart;
-                    intent = new Intent(getActivity(), ViewPagerChartsActivity.class);
-                    startActivity(intent);
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         }
 
@@ -162,27 +158,27 @@ public class MainActivity extends AppCompatActivity {
             list.add(new ChartSampleDescription("Pie Chart", "", ChartType.PIE_CHART));
             list.add(new ChartSampleDescription("Bubble Chart", "", ChartType.BUBBLE_CHART));
             list.add(new ChartSampleDescription("Preview Line Chart",
-                    "Control line chart viewport with another line chart.", ChartType.PREVIEW_LINE_CHART));
+                    "Control line chart viewport with another line chart.",
+                    ChartType.PREVIEW_LINE_CHART));
             list.add(new ChartSampleDescription("Preview Column Chart",
-                    "Control column chart viewport with another column chart.", ChartType.PREVIEW_COLUMN_CHART));
-            list.add(new ChartSampleDescription("Combo Line/Column Chart", "Combo chart with lines and columns.",
+                    "Control column chart viewport with another column chart.",
+                    ChartType.PREVIEW_COLUMN_CHART));
+            list.add(new ChartSampleDescription("Combo Line/Column Chart",
+                    "Combo chart with lines and columns.",
                     ChartType.OTHER));
             list.add(new ChartSampleDescription("Line/Column Chart Dependency",
-                    "LineChart responds(with animation) to column chart value selection.", ChartType.OTHER));
+                    "LineChart responds(with animation) to column chart value selection.",
+                    ChartType.OTHER));
             list.add(new ChartSampleDescription(
                     "Tempo Chart",
-                    "Presents tempo and height values on a signle chart. Example of multiple axes and reverted Y axis" +
-                            " with time format [mm:ss].",
+                    "Presents tempo and height values on a signle chart. Example of " +
+                            "multiple axes and reverted Y axis with time format [mm:ss].",
                     ChartType.OTHER));
             list.add(new ChartSampleDescription("Speed Chart",
-                    "Presents speed and height values on a signle chart. Exapmle of multiple axes inside chart area.",
-                    ChartType.OTHER));
+                    "Presents speed and height values on a signle chart. Exapmle of " +
+                            "multiple axes inside chart area.", ChartType.OTHER));
             list.add(new ChartSampleDescription("Good/Bad Chart",
                     "Example of filled area line chart with custom labels", ChartType.OTHER));
-            list.add(new ChartSampleDescription("ViewPager with Charts",
-                    "Interactive charts within ViewPager. Each chart can be zoom/scroll except pie chart.",
-                    ChartType.OTHER));
-
             return list;
         }
     }
@@ -216,34 +212,34 @@ public class MainActivity extends AppCompatActivity {
             holder.chartLayout.removeAllViews();
             AbstractChartView chart;
             switch (item.chartType) {
-                case LINE_CHART:
+                case LINE_CHART -> {
                     chart = new LineChartView(getContext());
                     holder.chartLayout.addView(chart);
-                    break;
-                case COLUMN_CHART:
+                }
+                case COLUMN_CHART -> {
                     chart = new ColumnChartView(getContext());
                     holder.chartLayout.addView(chart);
-                    break;
-                case PIE_CHART:
+                }
+                case PIE_CHART -> {
                     chart = new PieChartView(getContext());
                     holder.chartLayout.addView(chart);
-                    break;
-                case BUBBLE_CHART:
+                }
+                case BUBBLE_CHART -> {
                     chart = new BubbleChartView(getContext());
                     holder.chartLayout.addView(chart);
-                    break;
-                case PREVIEW_LINE_CHART:
+                }
+                case PREVIEW_LINE_CHART -> {
                     chart = new PreviewLineChartView(getContext());
                     holder.chartLayout.addView(chart);
-                    break;
-                case PREVIEW_COLUMN_CHART:
+                }
+                case PREVIEW_COLUMN_CHART -> {
                     chart = new PreviewColumnChartView(getContext());
                     holder.chartLayout.addView(chart);
-                    break;
-                default:
+                }
+                default -> {
                     chart = null;
                     holder.chartLayout.setVisibility(View.GONE);
-                    break;
+                }
             }
 
             if (null != chart)

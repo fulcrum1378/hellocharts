@@ -27,38 +27,38 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
     private static final int MODE_CHECK_TOUCH = 1;
     private static final int MODE_HIGHLIGHT = 2;
 
-    private ColumnChartDataProvider dataProvider;
+    private final ColumnChartDataProvider dataProvider;
 
     /**
      * Additional width for hightlighted column, used to give tauch feedback.
      */
-    private int touchAdditionalWidth;
+    private final int touchAdditionalWidth;
 
     /**
      * Spacing between sub-columns.
      */
-    private int subColumnSpacing;
+    private final int subColumnSpacing;
 
     /**
      * Paint used to draw every column.
      */
-    private Paint columnPaint = new Paint();
+    private final Paint columnPaint = new Paint();
 
     /**
      * Holds coordinates for currently processed column/sub-column.
      */
-    private RectF drawRect = new RectF();
+    private final RectF drawRect = new RectF();
 
     /**
      * Coordinated of user tauch.
      */
-    private PointF touchedPoint = new PointF();
+    private final PointF touchedPoint = new PointF();
 
     private float fillRatio;
 
     private float baseValue;
 
-    private Viewport tempMaximumViewport = new Viewport();
+    private final Viewport tempMaximumViewport = new Viewport();
 
     public ColumnChartRenderer(Context context, Chart chart, ColumnChartDataProvider dataProvider) {
         super(context, chart);
@@ -227,19 +227,14 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
             final float rawY = calculator.computeRawY(columnValue.getValue());
             calculateRectToDraw(columnValue, subColumnRawX, subColumnRawX + subColumnWidth, baseRawY, rawY);
             switch (mode) {
-                case MODE_DRAW:
-                    drawSubColumn(canvas, column, columnValue, false);
-                    break;
-                case MODE_HIGHLIGHT:
-                    highlightSubColumn(canvas, column, columnValue, valueIndex, false);
-                    break;
-                case MODE_CHECK_TOUCH:
-                    checkRectToDraw(columnIndex, valueIndex);
-                    break;
-                default:
+                case MODE_DRAW -> drawSubColumn(canvas, column, columnValue, false);
+                case MODE_HIGHLIGHT ->
+                        highlightSubColumn(canvas, column, columnValue, valueIndex, false);
+                case MODE_CHECK_TOUCH -> checkRectToDraw(columnIndex, valueIndex);
+                default ->
                     // There no else, every case should be handled or exception will
                     // be thrown
-                    throw new IllegalStateException("Cannot process column in mode: " + mode);
+                        throw new IllegalStateException("Cannot process column in mode: " + mode);
             }
             subColumnRawX += subColumnWidth + subColumnSpacing;
             ++valueIndex;
@@ -283,7 +278,7 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
         final float halfColumnWidth = columnWidth / 2;
         float mostPositiveValue = baseValue;
         float mostNegativeValue = baseValue;
-        float subColumnBaseValue = baseValue;
+        float subColumnBaseValue;
         int valueIndex = 0;
         for (SubColumnValue columnValue : column.getValues()) {
             columnPaint.setColor(columnValue.getColor());
@@ -300,19 +295,14 @@ public class ColumnChartRenderer extends AbstractChartRenderer {
             final float rawY = calculator.computeRawY(subColumnBaseValue + columnValue.getValue());
             calculateRectToDraw(columnValue, rawX - halfColumnWidth, rawX + halfColumnWidth, rawBaseY, rawY);
             switch (mode) {
-                case MODE_DRAW:
-                    drawSubColumn(canvas, column, columnValue, true);
-                    break;
-                case MODE_HIGHLIGHT:
-                    highlightSubColumn(canvas, column, columnValue, valueIndex, true);
-                    break;
-                case MODE_CHECK_TOUCH:
-                    checkRectToDraw(columnIndex, valueIndex);
-                    break;
-                default:
+                case MODE_DRAW -> drawSubColumn(canvas, column, columnValue, true);
+                case MODE_HIGHLIGHT ->
+                        highlightSubColumn(canvas, column, columnValue, valueIndex, true);
+                case MODE_CHECK_TOUCH -> checkRectToDraw(columnIndex, valueIndex);
+                default ->
                     // There no else, every case should be handled or exception will
                     // be thrown
-                    throw new IllegalStateException("Cannot process column in mode: " + mode);
+                        throw new IllegalStateException("Cannot process column in mode: " + mode);
             }
             ++valueIndex;
         }

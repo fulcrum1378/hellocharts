@@ -3,8 +3,9 @@ package ir.mahdiparastesh.hellocharts.model;
 import java.util.Arrays;
 
 /**
- * Single axis value, use it to manually set axis labels position. You can use label attribute to display text instead
- * of number but value formatter implementation have to handle it.
+ * Single axis value, use it to manually set axis labels position.
+ * You can use label attribute to display text instead of number but value formatter
+ * implementation have to handle it.
  */
 public class AxisValue {
     private float value;
@@ -12,12 +13,6 @@ public class AxisValue {
 
     public AxisValue(float value) {
         setValue(value);
-    }
-
-    //@Deprecated
-    public AxisValue(float value, char[] label) {
-        this.value = value;
-        this.label = label;
     }
 
     public AxisValue(AxisValue axisValue) {
@@ -34,16 +29,11 @@ public class AxisValue {
         return this;
     }
 
-    //@Deprecated
     public char[] getLabel() {
         return label;
     }
 
-    /**
-     * Set custom label for this axis value.
-     *
-     * @param label
-     */
+    /** Set custom label for this axis value. */
     public AxisValue setLabel(String label) {
         this.label = label.toCharArray();
         return this;
@@ -53,12 +43,7 @@ public class AxisValue {
         return label;
     }
 
-    /**
-     * Set custom label for this axis value.
-     *
-     * @param label
-     */
-    //@Deprecated
+    /** Set custom label for this axis value. */
     public AxisValue setLabel(char[] label) {
         this.label = label;
         return this;
@@ -77,7 +62,7 @@ public class AxisValue {
 
     @Override
     public int hashCode() {
-        int result = (value != +0.0f ? Float.floatToIntBits(value) : 0);
+        int result = (value != 0f ? Float.floatToIntBits(value) : 0);
         result = 31 * result + (label != null ? Arrays.hashCode(label) : 0);
         return result;
     }

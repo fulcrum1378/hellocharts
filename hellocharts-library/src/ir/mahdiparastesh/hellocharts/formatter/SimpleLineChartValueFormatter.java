@@ -4,7 +4,7 @@ import ir.mahdiparastesh.hellocharts.model.PointValue;
 
 public class SimpleLineChartValueFormatter implements LineChartValueFormatter {
 
-    private ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
+    private final ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
 
     public SimpleLineChartValueFormatter() {
         valueFormatterHelper.determineDecimalSeparator();

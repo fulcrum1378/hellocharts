@@ -18,6 +18,7 @@ public class ComboLineColumnChartData extends AbstractChartData {
         setLineChartData(lineChartData);
     }
 
+    @SuppressWarnings("unused")
     public ComboLineColumnChartData(ComboLineColumnChartData data) {
         super(data);
 

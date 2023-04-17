@@ -19,7 +19,7 @@ public class PreviewColumnChartRenderer extends ColumnChartRenderer {
     private static final int FULL_ALPHA = 255;
     private static final int DEFAULT_PREVIEW_STROKE_WIDTH_DP = 2;
 
-    private Paint previewPaint = new Paint();
+    private final Paint previewPaint = new Paint();
 
     public PreviewColumnChartRenderer(Context context, Chart chart, ColumnChartDataProvider dataProvider) {
         super(context, chart, dataProvider);

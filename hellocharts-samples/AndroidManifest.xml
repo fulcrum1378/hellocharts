@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ir.mahdiparastesh.hellocharts.samples">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -62,10 +61,6 @@
         <activity
             android:name=".SpeedChartActivity"
             android:label="@string/title_activity_speed_chart" />
-
-        <activity
-            android:name=".ViewPagerChartsActivity"
-            android:label="@string/title_activity_view_pager_charts" />
 
         <activity
             android:name=".AboutActivity"

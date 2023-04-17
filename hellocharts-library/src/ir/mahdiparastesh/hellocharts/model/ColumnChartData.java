@@ -11,10 +11,10 @@ import java.util.List;
  */
 public class ColumnChartData extends AbstractChartData {
     public static final float DEFAULT_FILL_RATIO = 0.75f;
-    public static final float DEFAULT_BASE_VALUE = 0.0f;
+    public static final float DEFAULT_BASE_VALUE = 0f;
     private float fillRatio = DEFAULT_FILL_RATIO;
     private float baseValue = DEFAULT_BASE_VALUE;
-    private List<Column> columns = new ArrayList<Column>();
+    private List<Column> columns = new ArrayList<>();
     private boolean isStacked = false;
 
     public ColumnChartData() {
@@ -24,27 +24,23 @@ public class ColumnChartData extends AbstractChartData {
         setColumns(columns);
     }
 
-    /**
-     * Copy constructor for deep copy.
-     */
+    /** Copy constructor for deep copy. */
     public ColumnChartData(ColumnChartData data) {
         super(data);
         this.isStacked = data.isStacked;
         this.fillRatio = data.fillRatio;
 
-        for (Column column : data.columns) {
-            this.columns.add(new Column(column));
-        }
+        for (Column column : data.columns) this.columns.add(new Column(column));
     }
 
     public static ColumnChartData generateDummyData() {
         final int numColumns = 4;
         ColumnChartData data = new ColumnChartData();
-        List<Column> columns = new ArrayList<Column>(numColumns);
+        List<Column> columns = new ArrayList<>(numColumns);
         List<SubColumnValue> values;
         Column column;
         for (int i = 1; i <= numColumns; ++i) {
-            values = new ArrayList<SubColumnValue>(numColumns);
+            values = new ArrayList<>(numColumns);
             values.add(new SubColumnValue(i));
             column = new Column(values);
             columns.add(column);
@@ -56,17 +52,12 @@ public class ColumnChartData extends AbstractChartData {
 
     @Override
     public void update(float scale) {
-        for (Column column : columns) {
-            column.update(scale);
-        }
-
+        for (Column column : columns) column.update(scale);
     }
 
     @Override
     public void finish() {
-        for (Column column : columns) {
-            column.finish();
-        }
+        for (Column column : columns) column.finish();
     }
 
     public List<Column> getColumns() {
@@ -75,7 +66,7 @@ public class ColumnChartData extends AbstractChartData {
 
     public ColumnChartData setColumns(List<Column> columns) {
         if (null == columns) {
-            this.columns = new ArrayList<Column>();
+            this.columns = new ArrayList<>();
         } else {
             this.columns = columns;
         }
@@ -86,12 +77,7 @@ public class ColumnChartData extends AbstractChartData {
         return isStacked;
     }
 
-    /**
-     * Set true if you want stacked column chart.
-     *
-     * @param isStacked
-     * @return
-     */
+    /** Set true if you want stacked column chart. */
     public ColumnChartData setStacked(boolean isStacked) {
         this.isStacked = isStacked;
         return this;
@@ -104,9 +90,6 @@ public class ColumnChartData extends AbstractChartData {
     /**
      * Set fill ration for columns, value from 0 to 1, 1 means that there will be almost no free space between columns,
      * 0 means that columns will have minimum width(2px).
-     *
-     * @param fillRatio
-     * @return
      */
     public ColumnChartData setFillRatio(float fillRatio) {
         if (fillRatio < 0) {
@@ -119,19 +102,14 @@ public class ColumnChartData extends AbstractChartData {
         return this;
     }
 
-    /**
-     * @see #setBaseValue(float)
-     */
+    /** @see #setBaseValue(float) */
     public float getBaseValue() {
         return baseValue;
     }
 
-    /**
-     * Set value below which values will be drawn as negative, by default 0.
-     */
+    /** Set value below which values will be drawn as negative, by default 0. */
     public ColumnChartData setBaseValue(float baseValue) {
         this.baseValue = baseValue;
         return this;
     }
-
 }

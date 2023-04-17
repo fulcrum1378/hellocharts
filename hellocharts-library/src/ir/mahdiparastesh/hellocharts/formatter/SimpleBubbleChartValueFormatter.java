@@ -2,10 +2,9 @@ package ir.mahdiparastesh.hellocharts.formatter;
 
 import ir.mahdiparastesh.hellocharts.model.BubbleValue;
 
-
 public class SimpleBubbleChartValueFormatter implements BubbleChartValueFormatter {
 
-    private ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
+    private final ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
 
     public SimpleBubbleChartValueFormatter() {
         valueFormatterHelper.determineDecimalSeparator();

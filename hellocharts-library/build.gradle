@@ -1,24 +1,9 @@
-import com.android.builder.core.BuilderConstants
-
-plugins {
-    id 'com.android.library'
-    id 'maven-publish'
-}
-
-dependencies {
-    implementation 'androidx.core:core:1.8.0'
-    implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0' // only ViewPager1 needed
-}
-
+plugins { id 'com.android.library' }
 
 android {
+    namespace 'ir.mahdiparastesh.hellocharts'
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+    buildToolsVersion '34.0.0 rc3'
 
     defaultConfig {
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
@@ -39,19 +24,35 @@ android {
         }
     }
 
-    //lintOptions {abortOnError false}
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
-android.libraryVariants.all { variant ->
+dependencies {
+    implementation 'androidx.core:core:1.10.0'
+
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+}
+
+/*android.libraryVariants.all { variant ->
     def name = variant.buildType.name
     if (name == BuilderConstants.DEBUG) return
     def task = project.tasks.create "jar${name.capitalize()}", Jar
     task.dependsOn variant.javaCompile
     task.from variant.javaCompile.destinationDir
     artifacts.add('archives', task)
-}
+}*/
 
-android.libraryVariants
+/*android.libraryVariants
 publishing {
     publications {
         maven(MavenPublication) {
@@ -71,4 +72,4 @@ publishing {
             url "http://your-nexus-url/"
         }
     }
-}
+}*/

@@ -170,9 +170,9 @@ public class ChartCalculator {
      * unchanged.
      */
     public boolean rawPixelsToDataPoint(float x, float y, PointF dest) {
-        if (!contentRectMinusAllMargins.contains((int) x, (int) y)) {
+        if (!contentRectMinusAllMargins.contains((int) x, (int) y))
             return false;
-        }
+
         dest.set(currentViewport.left + (x - contentRectMinusAllMargins.left) * currentViewport.width() /
                         contentRectMinusAllMargins.width(),
                 currentViewport.bottom + (y - contentRectMinusAllMargins.bottom) * currentViewport.height() /

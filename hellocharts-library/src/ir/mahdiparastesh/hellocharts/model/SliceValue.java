@@ -1,41 +1,28 @@
 package ir.mahdiparastesh.hellocharts.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/**
- * Model representing single slice on PieChart.
- */
+/** Model representing single slice on PieChart. */
 public class SliceValue {
     private static final int DEFAULT_SLICE_SPACING_DP = 2;
-    //@Deprecated
     /* Spacing between this slice and its neighbors. */
     private int sliceSpacing = DEFAULT_SLICE_SPACING_DP;
-    /**
-     * Current value of this slice.
-     */
+    /** Current value of this slice. */
     private float value;
-    /**
-     * Origin value of this slice, used during value animation.
-     */
+    /** Origin value of this slice, used during value animation. */
     private float originValue;
-    /**
-     * Difference between originValue and targetValue.
-     */
+    /** Difference between originValue and targetValue. */
     private float diff;
-    /**
-     * Color of this slice.
-     */
+    /** Color of this slice. */
     private int color = ChartUtils.DEFAULT_COLOR;
-    /**
-     * Darken color used to draw label background and give touch feedback.
-     */
+    /** Darken color used to draw label background and give touch feedback. */
     private int darkenColor = ChartUtils.DEFAULT_DARKEN_COLOR;
-    /**
-     * Custom label for this slice, if not set number formatting will be used.
-     */
+    /** Custom label for this slice, if not set number formatting will be used. */
     private char[] label;
 
     public SliceValue() {
@@ -84,10 +71,8 @@ public class SliceValue {
     }
 
     /**
-     * Set target value that should be reached when data animation finish then call {@link Chart#startDataAnimation()}
-     *
-     * @param target
-     * @return
+     * Set target value that should be reached when data animation finish then call
+     * {@link Chart#startDataAnimation()}
      */
     public SliceValue setTarget(float target) {
         setValue(value);
@@ -109,23 +94,10 @@ public class SliceValue {
         return darkenColor;
     }
 
-    //@Deprecated
-    public int getSliceSpacing() {
-        return sliceSpacing;
-    }
-
-    //@Deprecated
-    public SliceValue setSliceSpacing(int sliceSpacing) {
-        this.sliceSpacing = sliceSpacing;
-        return this;
-    }
-
-    //@Deprecated
     public char[] getLabel() {
         return label;
     }
 
-    //@Deprecated
     public SliceValue setLabel(char[] label) {
         this.label = label;
         return this;
@@ -140,6 +112,7 @@ public class SliceValue {
         return label;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "SliceValue [value=" + value + "]";
@@ -163,9 +136,9 @@ public class SliceValue {
 
     @Override
     public int hashCode() {
-        int result = (value != +0.0f ? Float.floatToIntBits(value) : 0);
-        result = 31 * result + (originValue != +0.0f ? Float.floatToIntBits(originValue) : 0);
-        result = 31 * result + (diff != +0.0f ? Float.floatToIntBits(diff) : 0);
+        int result = (value != 0f ? Float.floatToIntBits(value) : 0);
+        result = 31 * result + (originValue != 0f ? Float.floatToIntBits(originValue) : 0);
+        result = 31 * result + (diff != 0f ? Float.floatToIntBits(diff) : 0);
         result = 31 * result + color;
         result = 31 * result + darkenColor;
         result = 31 * result + sliceSpacing;

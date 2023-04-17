@@ -1,12 +1,9 @@
-apply plugin: 'com.android.application'
-
-dependencies {
-    implementation project(':hellocharts-library')
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-}
+plugins { id 'com.android.application' }
 
 android {
+    namespace 'ir.mahdiparastesh.hellocharts.samples'
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion '34.0.0 rc3'
 
     defaultConfig {
         applicationId 'ir.mahdiparastesh.hellocharts'
@@ -14,11 +11,6 @@ android {
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -32,4 +24,14 @@ android {
             assets.srcDirs = ['assets']
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation project(':hellocharts-library')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }

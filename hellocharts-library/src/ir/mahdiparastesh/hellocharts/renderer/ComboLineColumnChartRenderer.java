@@ -8,9 +8,6 @@ import ir.mahdiparastesh.hellocharts.view.Chart;
 
 public class ComboLineColumnChartRenderer extends ComboChartRenderer {
 
-    private ColumnChartRenderer columnChartRenderer;
-    private LineChartRenderer lineChartRenderer;
-
     public ComboLineColumnChartRenderer(Context context, Chart chart, ColumnChartDataProvider columnChartDataProvider,
                                         LineChartDataProvider lineChartDataProvider) {
         this(context, chart, new ColumnChartRenderer(context, chart, columnChartDataProvider),
@@ -31,10 +28,7 @@ public class ComboLineColumnChartRenderer extends ComboChartRenderer {
                                         LineChartRenderer lineChartRenderer) {
         super(context, chart);
 
-        this.columnChartRenderer = columnChartRenderer;
-        this.lineChartRenderer = lineChartRenderer;
-
-        renderers.add(this.columnChartRenderer);
-        renderers.add(this.lineChartRenderer);
+        renderers.add(columnChartRenderer);
+        renderers.add(lineChartRenderer);
     }
 }

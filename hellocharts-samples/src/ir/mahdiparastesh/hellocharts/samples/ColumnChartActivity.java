@@ -124,13 +124,14 @@ public class ColumnChartActivity extends AppCompatActivity {
                 toggleLabelForSelected();
 
                 Toast.makeText(getActivity(),
-                        "Selection mode set to " + chart.isValueSelectionEnabled() + " select any point.",
-                        Toast.LENGTH_SHORT).show();
+                        "Selection mode set to " + chart.isValueSelectionEnabled() +
+                                " select any point.", Toast.LENGTH_SHORT).show();
                 return true;
             }
             if (id == R.id.action_toggle_touch_zoom) {
                 chart.setZoomEnabled(!chart.isZoomEnabled());
-                Toast.makeText(getActivity(), "IsZoomEnabled " + chart.isZoomEnabled(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "IsZoomEnabled " + chart.isZoomEnabled(),
+                        Toast.LENGTH_SHORT).show();
                 return true;
             }
             if (id == R.id.action_zoom_both) {
@@ -161,13 +162,15 @@ public class ColumnChartActivity extends AppCompatActivity {
             int numSubColumns = 1;
             int numColumns = 8;
             // Column can have many subColumns, here by default I use 1 subColumn in each of 8 columns.
-            List<Column> columns = new ArrayList<Column>();
+            List<Column> columns = new ArrayList<>();
             List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubColumnValue>();
+                values = new ArrayList<>();
                 for (int j = 0; j < numSubColumns; ++j) {
-                    values.add(new SubColumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
+                    values.add(new SubColumnValue(
+                            (float) Math.random() * 50f + 5,
+                            ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -203,13 +206,15 @@ public class ColumnChartActivity extends AppCompatActivity {
             int numSubColumns = 4;
             int numColumns = 4;
             // Column can have many subColumns, here I use 4 subColumn in each of 8 columns.
-            List<Column> columns = new ArrayList<Column>();
+            List<Column> columns = new ArrayList<>();
             List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubColumnValue>();
+                values = new ArrayList<>();
                 for (int j = 0; j < numSubColumns; ++j) {
-                    values.add(new SubColumnValue((float) Math.random() * 50f + 5, ChartUtils.pickColor()));
+                    values.add(new SubColumnValue(
+                            (float) Math.random() * 50f + 5,
+                            ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -245,13 +250,15 @@ public class ColumnChartActivity extends AppCompatActivity {
             int numSubColumns = 4;
             int numColumns = 8;
             // Column can have many stacked subColumns, here I use 4 stacke subColumn in each of 4 columns.
-            List<Column> columns = new ArrayList<Column>();
+            List<Column> columns = new ArrayList<>();
             List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubColumnValue>();
+                values = new ArrayList<>();
                 for (int j = 0; j < numSubColumns; ++j) {
-                    values.add(new SubColumnValue((float) Math.random() * 20f + 5, ChartUtils.pickColor()));
+                    values.add(new SubColumnValue(
+                            (float) Math.random() * 20f + 5,
+                            ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -286,15 +293,16 @@ public class ColumnChartActivity extends AppCompatActivity {
 
             int numSubColumns = 4;
             int numColumns = 4;
-            List<Column> columns = new ArrayList<Column>();
+            List<Column> columns = new ArrayList<>();
             List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubColumnValue>();
+                values = new ArrayList<>();
                 for (int j = 0; j < numSubColumns; ++j) {
                     int sign = getSign();
-                    values.add(new SubColumnValue((float) Math.random() * 50f * sign + 5 * sign, ChartUtils.pickColor
-                            ()));
+                    values.add(new SubColumnValue(
+                            (float) Math.random() * 50f * sign + 5 * sign,
+                            ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -327,14 +335,16 @@ public class ColumnChartActivity extends AppCompatActivity {
             int numSubColumns = 4;
             int numColumns = 8;
             // Column can have many stacked subColumns, here I use 4 stacke subColumn in each of 4 columns.
-            List<Column> columns = new ArrayList<Column>();
+            List<Column> columns = new ArrayList<>();
             List<SubColumnValue> values;
             for (int i = 0; i < numColumns; ++i) {
 
-                values = new ArrayList<SubColumnValue>();
+                values = new ArrayList<>();
                 for (int j = 0; j < numSubColumns; ++j) {
                     int sign = getSign();
-                    values.add(new SubColumnValue((float) Math.random() * 20f * sign + 5 * sign, ChartUtils.pickColor()));
+                    values.add(new SubColumnValue(
+                            (float) Math.random() * 20f * sign + 5 * sign,
+                            ChartUtils.pickColor()));
                 }
 
                 Column column = new Column(values);
@@ -372,24 +382,11 @@ public class ColumnChartActivity extends AppCompatActivity {
 
         private void generateData() {
             switch (dataType) {
-                case DEFAULT_DATA:
-                    generateDefaultData();
-                    break;
-                case SUBCOLUMNS_DATA:
-                    generateSubColumnsData();
-                    break;
-                case STACKED_DATA:
-                    generateStackedData();
-                    break;
-                case NEGATIVE_SUBCOLUMNS_DATA:
-                    generateNegativeSubColumnsData();
-                    break;
-                case NEGATIVE_STACKED_DATA:
-                    generateNegativeStackedData();
-                    break;
-                default:
-                    generateDefaultData();
-                    break;
+                case SUBCOLUMNS_DATA -> generateSubColumnsData();
+                case STACKED_DATA -> generateStackedData();
+                case NEGATIVE_SUBCOLUMNS_DATA -> generateNegativeSubColumnsData();
+                case NEGATIVE_STACKED_DATA -> generateNegativeStackedData();
+                default -> generateDefaultData();
             }
         }
 

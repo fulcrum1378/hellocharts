@@ -3,36 +3,7 @@ package ir.mahdiparastesh.hellocharts.util;
 public class FloatUtils {
     public static final int[] POW10 = {1, 10, 100, 1000, 10000, 100000, 1000000};
 
-    /**
-     * Returns next bigger float value considering precision of the argument.
-     */
-    public static float nextUpF(float f) {
-        if (Float.isNaN(f) || f == Float.POSITIVE_INFINITY)
-            return f;
-        else {
-            f += 0.0f;
-            return Float.intBitsToFloat(Float.floatToRawIntBits(f) + ((f >= 0.0f) ? +1 : -1));
-        }
-    }
-
-    /**
-     * Returns next smaller float value considering precision of the argument.
-     */
-    public static float nextDownF(float f) {
-        if (Float.isNaN(f) || f == Float.NEGATIVE_INFINITY) {
-            return f;
-        } else {
-            if (f == 0.0f) {
-                return -Float.MIN_VALUE;
-            } else {
-                return Float.intBitsToFloat(Float.floatToRawIntBits(f) + ((f > 0.0f) ? -1 : +1));
-            }
-        }
-    }
-
-    /**
-     * Returns next bigger double value considering precision of the argument.
-     */
+    /** Returns next bigger double value considering precision of the argument. */
     public static double nextUp(double d) {
         if (Double.isNaN(d) || d == Double.POSITIVE_INFINITY) {
             return d;
@@ -40,33 +11,6 @@ public class FloatUtils {
             d += 0.0;
             return Double.longBitsToDouble(Double.doubleToRawLongBits(d) + ((d >= 0.0) ? +1 : -1));
         }
-    }
-
-    /**
-     * Returns next smaller float value considering precision of the argument.
-     */
-    public static double nextDown(double d) {
-        if (Double.isNaN(d) || d == Double.NEGATIVE_INFINITY) {
-            return d;
-        } else {
-            if (d == 0.0f)
-                return -Float.MIN_VALUE;
-            else
-                return Double.longBitsToDouble(Double.doubleToRawLongBits(d) + ((d > 0.0f) ? -1 : +1));
-        }
-    }
-
-    /**
-     * Method checks if two float numbers are similar.
-     */
-    public static boolean almostEqual(float a, float b, float absoluteDiff, float relativeDiff) {
-        float diff = Math.abs(a - b);
-        if (diff <= absoluteDiff) return true;
-
-        a = Math.abs(a);
-        b = Math.abs(b);
-
-        return diff <= Math.max(a, b) * relativeDiff;
     }
 
     /**

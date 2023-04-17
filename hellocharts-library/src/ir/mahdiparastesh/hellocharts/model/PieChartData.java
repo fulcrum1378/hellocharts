@@ -36,7 +36,7 @@ public class PieChartData extends AbstractChartData {
     private Typeface centerText2Typeface;
     private String centerText2;
 
-    private List<SliceValue> values = new ArrayList<SliceValue>();
+    private List<SliceValue> values = new ArrayList<>();
 
     public PieChartData() {
         setAxisXBottom(null);
@@ -79,7 +79,7 @@ public class PieChartData extends AbstractChartData {
     public static PieChartData generateDummyData() {
         final int numValues = 4;
         PieChartData data = new PieChartData();
-        List<SliceValue> values = new ArrayList<SliceValue>(numValues);
+        List<SliceValue> values = new ArrayList<>(numValues);
         values.add(new SliceValue(40f));
         values.add(new SliceValue(20f));
         values.add(new SliceValue(30f));
@@ -124,7 +124,7 @@ public class PieChartData extends AbstractChartData {
 
     public PieChartData setValues(List<SliceValue> values) {
         if (null == values) {
-            this.values = new ArrayList<SliceValue>();
+            this.values = new ArrayList<>();
         } else {
             this.values = values;
         }

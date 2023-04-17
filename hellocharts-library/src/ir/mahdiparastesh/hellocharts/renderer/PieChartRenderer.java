@@ -37,36 +37,36 @@ public class PieChartRenderer extends AbstractChartRenderer {
     private static final int MODE_DRAW = 0;
     private static final int MODE_HIGHLIGHT = 1;
     private int rotation = DEFAULT_START_ROTATION;
-    private PieChartDataProvider dataProvider;
-    private Paint slicePaint = new Paint();
+    private final PieChartDataProvider dataProvider;
+    private final Paint slicePaint = new Paint();
     private float maxSum;
     private RectF originCircleOval = new RectF();
-    private RectF drawCircleOval = new RectF();
-    private PointF sliceVector = new PointF();
-    private int touchAdditional;
+    private final RectF drawCircleOval = new RectF();
+    private final PointF sliceVector = new PointF();
+    private final int touchAdditional;
     private float circleFillRatio = 1.0f;
 
     // Center circle related attributes
     private boolean hasCenterCircle;
     private float centerCircleScale;
-    private Paint centerCirclePaint = new Paint();
+    private final Paint centerCirclePaint = new Paint();
     // Text1
-    private Paint centerCircleText1Paint = new Paint();
-    private FontMetricsInt centerCircleText1FontMetrics = new FontMetricsInt();
+    private final Paint centerCircleText1Paint = new Paint();
+    private final FontMetricsInt centerCircleText1FontMetrics = new FontMetricsInt();
     // Text2
-    private Paint centerCircleText2Paint = new Paint();
-    private FontMetricsInt centerCircleText2FontMetrics = new FontMetricsInt();
+    private final Paint centerCircleText2Paint = new Paint();
+    private final FontMetricsInt centerCircleText2FontMetrics = new FontMetricsInt();
     // Separation lines
-    private Paint separationLinesPaint = new Paint();
+    private final Paint separationLinesPaint = new Paint();
 
     private boolean hasLabelsOutside;
     private boolean hasLabels;
     private boolean hasLabelsOnlyForSelected;
     private PieChartValueFormatter valueFormatter;
-    private Viewport tempMaximumViewport = new Viewport();
+    private final Viewport tempMaximumViewport = new Viewport();
 
     private Bitmap softwareBitmap;
-    private Canvas softwareCanvas = new Canvas();
+    private final Canvas softwareCanvas = new Canvas();
 
     public PieChartRenderer(Context context, Chart chart, PieChartDataProvider dataProvider) {
         super(context, chart);
@@ -224,20 +224,20 @@ public class PieChartRenderer extends AbstractChartRenderer {
             if (!TextUtils.isEmpty(data.getCenterText2())) {
                 // Draw text 2 only if text 1 is not empty.
                 final int text2Height = Math.abs(centerCircleText2FontMetrics.ascent);
-                canvas.drawText(data.getCenterText1(), centerX, centerY - text1Height * 0.2f, centerCircleText1Paint);
-                canvas.drawText(data.getCenterText2(), centerX, centerY + text2Height, centerCircleText2Paint);
+                canvas.drawText(data.getCenterText1(),
+                        centerX, centerY - text1Height * 0.2f, centerCircleText1Paint);
+                canvas.drawText(data.getCenterText2(),
+                        centerX, centerY + text2Height, centerCircleText2Paint);
             } else {
-                canvas.drawText(data.getCenterText1(), centerX, centerY + text1Height / 4, centerCircleText1Paint);
+                canvas.drawText(data.getCenterText1(),
+                        centerX, centerY + text1Height / 4f, centerCircleText1Paint);
             }
         }
     }
 
     /**
-     * Draw all slices for this PieChart, if mode == {@link #MODE_HIGHLIGHT} currently selected slices will be redrawn
-     * and
-     * highlighted.
-     *
-     * @param canvas
+     * Draw all slices for this PieChart, if mode == {@link #MODE_HIGHLIGHT} currently selected
+     * slices will be redrawn and highlighted.
      */
     private void drawSlices(Canvas canvas) {
         final PieChartData data = dataProvider.getPieChartData();
@@ -281,7 +281,8 @@ public class PieChartRenderer extends AbstractChartRenderer {
             float x1 = sliceVector.x * (circleRadius + touchAdditional) + originCircleOval.centerX();
             float y1 = sliceVector.y * (circleRadius + touchAdditional) + originCircleOval.centerY();
 
-            canvas.drawLine(originCircleOval.centerX(), originCircleOval.centerY(), x1, y1, separationLinesPaint);
+            canvas.drawLine(originCircleOval.centerX(), originCircleOval.centerY(),
+                    x1, y1, separationLinesPaint);
 
             lastAngle += angle;
         }
@@ -311,9 +312,8 @@ public class PieChartRenderer extends AbstractChartRenderer {
     }
 
     /**
-     * Method draws single slice from lastAngle to lastAngle+angle, if mode = {@link #MODE_HIGHLIGHT} slice will be
-     * darken
-     * and will have bigger radius.
+     * Method draws single slice from lastAngle to lastAngle+angle,
+     * if mode = {@link #MODE_HIGHLIGHT} slice will be darken and will have bigger radius.
      */
     private void drawSlice(Canvas canvas, SliceValue sliceValue, float lastAngle, float angle, int mode) {
         sliceVector.set((float) (Math.cos(Math.toRadians(lastAngle + angle / 2))),
@@ -340,7 +340,8 @@ public class PieChartRenderer extends AbstractChartRenderer {
             return;
         }
 
-        final float labelWidth = labelPaint.measureText(labelBuffer, labelBuffer.length - numChars, numChars);
+        final float labelWidth = labelPaint.measureText(labelBuffer,
+                labelBuffer.length - numChars, numChars);
         final int labelHeight = Math.abs(fontMetrics.ascent);
 
         final float centerX = originCircleOval.centerX();
@@ -387,8 +388,8 @@ public class PieChartRenderer extends AbstractChartRenderer {
         } else {
             left = rawX - labelWidth / 2 - labelMargin;
             right = rawX + labelWidth / 2 + labelMargin;
-            top = rawY - labelHeight / 2 - labelMargin;
-            bottom = rawY + labelHeight / 2 + labelMargin;
+            top = rawY - labelHeight / 2f - labelMargin;
+            bottom = rawY + labelHeight / 2f + labelMargin;
         }
 
         labelBackgroundRect.set(left, top, right, bottom);
@@ -439,7 +440,7 @@ public class PieChartRenderer extends AbstractChartRenderer {
      */
     private void calculateMaxViewport() {
         tempMaximumViewport.set(0, MAX_WIDTH_HEIGHT, MAX_WIDTH_HEIGHT, 0);
-        maxSum = 0.0f;
+        maxSum = 0f;
         for (SliceValue sliceValue : dataProvider.getPieChartData().getValues()) {
             maxSum += Math.abs(sliceValue.getValue());
         }
@@ -506,5 +507,4 @@ public class PieChartRenderer extends AbstractChartRenderer {
         this.circleFillRatio = fillRatio;
         calculateCircleOval();
     }
-
 }

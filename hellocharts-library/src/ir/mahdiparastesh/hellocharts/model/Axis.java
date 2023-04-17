@@ -33,7 +33,7 @@ public class Axis {
     /**
      * Axis values, each value will be used to calculate its label position.
      */
-    private List<AxisValue> values = new ArrayList<AxisValue>();
+    private List<AxisValue> values = new ArrayList<>();
     /**
      * Name for this axis.
      */
@@ -111,7 +111,7 @@ public class Axis {
      */
     public static Axis generateAxisFromRange(float start, float stop, float step) {
 
-        List<AxisValue> values = new ArrayList<AxisValue>();
+        List<AxisValue> values = new ArrayList<>();
         for (float value = start; value <= stop; value += step) {
             AxisValue axisValue = new AxisValue(value);
             values.add(axisValue);
@@ -121,7 +121,7 @@ public class Axis {
     }
 
     public static Axis generateAxisFromCollection(List<Float> axisValues) {
-        List<AxisValue> values = new ArrayList<AxisValue>();
+        List<AxisValue> values = new ArrayList<>();
         int index = 0;
         for (float value : axisValues) {
             AxisValue axisValue = new AxisValue(value);
@@ -140,7 +140,7 @@ public class Axis {
             throw new IllegalArgumentException("Values and labels lists must have the same size!");
         }
 
-        List<AxisValue> values = new ArrayList<AxisValue>();
+        List<AxisValue> values = new ArrayList<>();
         int index = 0;
         for (float value : axisValues) {
             AxisValue axisValue = new AxisValue(value).setLabel(axisValuesLabels.get(index));
@@ -157,7 +157,7 @@ public class Axis {
 
     public Axis setValues(List<AxisValue> values) {
         if (null == values) {
-            this.values = new ArrayList<AxisValue>();
+            this.values = new ArrayList<>();
         } else {
             this.values = values;
         }

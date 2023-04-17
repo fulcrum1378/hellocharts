@@ -30,9 +30,9 @@ public class PieChartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
-        }
+        if (savedInstanceState == null)
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment()).commit();
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -130,8 +130,8 @@ public class PieChartActivity extends AppCompatActivity {
             }
             if (id == R.id.action_toggle_selection_mode) {
                 toggleLabelForSelected();
-                Toast.makeText(getActivity(),
-                        "Selection mode set to " + chart.isValueSelectionEnabled() + " select any point.",
+                Toast.makeText(getActivity(), "Selection mode set to " +
+                                chart.isValueSelectionEnabled() + " select any point.",
                         Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -152,9 +152,10 @@ public class PieChartActivity extends AppCompatActivity {
         private void generateData() {
             int numValues = 6;
 
-            List<SliceValue> values = new ArrayList<SliceValue>();
+            List<SliceValue> values = new ArrayList<>();
             for (int i = 0; i < numValues; ++i) {
-                SliceValue sliceValue = new SliceValue((float) Math.random() * 30 + 15, ChartUtils.pickColor());
+                SliceValue sliceValue =
+                        new SliceValue((float) Math.random() * 30 + 15, ChartUtils.pickColor());
                 values.add(sliceValue);
             }
 
@@ -164,30 +165,32 @@ public class PieChartActivity extends AppCompatActivity {
             data.setHasLabelsOutside(hasLabelsOutside);
             data.setHasCenterCircle(hasCenterCircle);
 
-            if (isExploded) {
-                data.setSlicesSpacing(24);
-            }
+            if (isExploded) data.setSlicesSpacing(24);
 
             if (hasCenterText1) {
                 data.setCenterText1("Hello!");
 
                 // Get roboto-italic font.
-                Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Italic.ttf");
+                Typeface tf = Typeface.createFromAsset(
+                        requireActivity().getAssets(), "Roboto-Italic.ttf");
                 data.setCenterText1Typeface(tf);
 
                 // Get font size from dimens.xml and convert it to sp(library uses sp values).
-                data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
+                data.setCenterText1FontSize(ChartUtils.px2sp(
+                        getResources().getDisplayMetrics().scaledDensity,
                         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
             }
 
             if (hasCenterText2) {
                 data.setCenterText2("Charts (Roboto Italic)");
 
-                Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Italic.ttf");
+                Typeface tf = Typeface.createFromAsset(
+                        requireActivity().getAssets(), "Roboto-Italic.ttf");
 
                 data.setCenterText2Typeface(tf);
-                data.setCenterText2FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
-                        (int) getResources().getDimension(R.dimen.pie_chart_text2_size)));
+                data.setCenterText2FontSize(
+                        ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
+                                (int) getResources().getDimension(R.dimen.pie_chart_text2_size)));
             }
 
             chart.setPieChartData(data);

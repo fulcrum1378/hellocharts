@@ -2,10 +2,9 @@ package ir.mahdiparastesh.hellocharts.formatter;
 
 import ir.mahdiparastesh.hellocharts.model.SliceValue;
 
-
 public class SimplePieChartValueFormatter implements PieChartValueFormatter {
 
-    private ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
+    private final ValueFormatterHelper valueFormatterHelper = new ValueFormatterHelper();
 
     public SimplePieChartValueFormatter() {
         valueFormatterHelper.determineDecimalSeparator();

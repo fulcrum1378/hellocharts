@@ -15,12 +15,12 @@ public interface ChartRenderer {
 
     void resetRenderer();
 
-    public void draw(Canvas canvas);
+    void draw(Canvas canvas);
 
     /**
      * Draw chart data that should not be clipped to contentRect area.
      */
-    public void drawUnClipped(Canvas canvas);
+    void drawUnClipped(Canvas canvas);
 
     /**
      * Checks if given pixel coordinates corresponds to any chart value. If yes return true and set selectedValue, if

@@ -19,10 +19,9 @@ public class ChartScroller {
         scroller = ScrollerCompat.create(context);
     }
 
-    public boolean startScroll(ChartCalculator calculator) {
+    public void startScroll(ChartCalculator calculator) {
         scroller.abortAnimation();
         scrollerStartViewport.set(calculator.getCurrentViewport());
-        return true;
     }
 
     public boolean scroll(ChartCalculator calculator, float distanceX, float distanceY, ScrollResult scrollResult) {
@@ -65,8 +64,9 @@ public class ChartScroller {
             float viewportOffsetX = distanceX * visibleViewport.width() / contentRect.width();
             float viewportOffsetY = -distanceY * visibleViewport.height() / contentRect.height();
 
-            calculator
-                    .setViewportTopLeft(currentViewport.left + viewportOffsetX, currentViewport.top + viewportOffsetY);
+            calculator.setViewportTopLeft(
+                    currentViewport.left + viewportOffsetX,
+                    currentViewport.top + viewportOffsetY);
         }
 
         scrollResult.canScrollX = canScrollX;
@@ -97,14 +97,16 @@ public class ChartScroller {
         return false;
     }
 
-    public boolean fling(int velocityX, int velocityY, ChartCalculator calculator) {
+    public void fling(int velocityX, int velocityY, ChartCalculator calculator) {
         // Flings use math in pixels (as opposed to math based on the viewport).
         calculator.computeScrollSurfaceSize(surfaceSizeBuffer);
         scrollerStartViewport.set(calculator.getCurrentViewport());
 
-        int startX = (int) (surfaceSizeBuffer.x * (scrollerStartViewport.left - calculator.getMaximumViewport().left)
+        int startX = (int) (surfaceSizeBuffer.x *
+                (scrollerStartViewport.left - calculator.getMaximumViewport().left)
                 / calculator.getMaximumViewport().width());
-        int startY = (int) (surfaceSizeBuffer.y * (calculator.getMaximumViewport().top - scrollerStartViewport.top) /
+        int startY = (int) (surfaceSizeBuffer.y *
+                (calculator.getMaximumViewport().top - scrollerStartViewport.top) /
                 calculator.getMaximumViewport().height());
 
         // TODO probably should be mScroller.forceFinish but ScrollerCompat doesn't have that method.
@@ -112,9 +114,9 @@ public class ChartScroller {
 
         final int width = calculator.getContentRectMinusAllMargins().width();
         final int height = calculator.getContentRectMinusAllMargins().height();
-        scroller.fling(startX, startY, velocityX, velocityY, 0, surfaceSizeBuffer.x - width + 1, 0,
+        scroller.fling(startX, startY, velocityX, velocityY, 0,
+                surfaceSizeBuffer.x - width + 1, 0,
                 surfaceSizeBuffer.y - height + 1);
-        return true;
     }
 
     public static class ScrollResult {

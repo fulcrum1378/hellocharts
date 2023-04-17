@@ -107,9 +107,7 @@ public class SelectedValue {
             return false;
         if (secondIndex != other.secondIndex)
             return false;
-        if (type != other.type)
-            return false;
-        return true;
+        return type == other.type;
     }
 
     @NonNull

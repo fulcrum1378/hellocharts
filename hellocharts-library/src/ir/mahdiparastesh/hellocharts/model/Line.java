@@ -10,9 +10,7 @@ import ir.mahdiparastesh.hellocharts.formatter.SimpleLineChartValueFormatter;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/**
- * Single line for line chart.
- */
+/** Single line for line chart. */
 public class Line {
     private static final int DEFAULT_LINE_STROKE_WIDTH_DP = 3;
     private static final int DEFAULT_POINT_RADIUS_DP = 6;
@@ -21,9 +19,7 @@ public class Line {
     private int color = ChartUtils.DEFAULT_COLOR;
     private int pointColor = UNINITIALIZED;
     private int darkenColor = ChartUtils.DEFAULT_DARKEN_COLOR;
-    /**
-     * Transparency of area when line is filled. *
-     */
+    /** Transparency of area when line is filled. */
     private int areaTransparency = DEFAULT_AREA_TRANSPARENCY;
     private int strokeWidth = DEFAULT_LINE_STROKE_WIDTH_DP;
     private int pointRadius = DEFAULT_POINT_RADIUS_DP;
@@ -38,10 +34,9 @@ public class Line {
     private ValueShape shape = ValueShape.CIRCLE;
     private PathEffect pathEffect;
     private LineChartValueFormatter formatter = new SimpleLineChartValueFormatter();
-    private List<PointValue> values = new ArrayList<PointValue>();
+    private List<PointValue> values = new ArrayList<>();
 
     public Line() {
-
     }
 
     public Line(List<PointValue> values) {
@@ -73,15 +68,11 @@ public class Line {
     }
 
     public void update(float scale) {
-        for (PointValue value : values) {
-            value.update(scale);
-        }
+        for (PointValue value : values) value.update(scale);
     }
 
     public void finish() {
-        for (PointValue value : values) {
-            value.finish();
-        }
+        for (PointValue value : values) value.finish();
     }
 
     public List<PointValue> getValues() {
@@ -90,7 +81,7 @@ public class Line {
 
     public void setValues(List<PointValue> values) {
         if (null == values) {
-            this.values = new ArrayList<PointValue>();
+            this.values = new ArrayList<>();
         } else {
             this.values = values;
         }
@@ -130,19 +121,12 @@ public class Line {
         return darkenColor;
     }
 
-    /**
-     * @see #setAreaTransparency(int)
-     */
+    /** @see #setAreaTransparency(int) */
     public int getAreaTransparency() {
         return areaTransparency;
     }
 
-    /**
-     * Set area transparency(255 is full opacity) for filled lines
-     *
-     * @param areaTransparency
-     * @return
-     */
+    /** Set area transparency(255 is full opacity) for filled lines. */
     public Line setAreaTransparency(int areaTransparency) {
         this.areaTransparency = areaTransparency;
         return this;
@@ -187,9 +171,7 @@ public class Line {
         return this;
     }
 
-    /**
-     * @see #setHasLabelsOnlyForSelected(boolean)
-     */
+    /** @see #setHasLabelsOnlyForSelected(boolean) */
     public boolean hasLabelsOnlyForSelected() {
         return hasLabelsOnlyForSelected;
     }
@@ -210,12 +192,7 @@ public class Line {
         return pointRadius;
     }
 
-    /**
-     * Set radius for points for this line.
-     *
-     * @param pointRadius
-     * @return
-     */
+    /** Set radius for points for this line. */
     public Line setPointRadius(int pointRadius) {
         this.pointRadius = pointRadius;
         return this;
@@ -261,19 +238,12 @@ public class Line {
         return this;
     }
 
-    /**
-     * @see #setShape(ValueShape)
-     */
+    /** @see #setShape(ValueShape) */
     public ValueShape getShape() {
         return shape;
     }
 
-    /**
-     * Set shape for points, possible values: SQUARE, CIRCLE
-     *
-     * @param shape
-     * @return
-     */
+    /** Set shape for points, possible values: SQUARE, CIRCLE */
     public Line setShape(ValueShape shape) {
         this.shape = shape;
         return this;
@@ -286,8 +256,6 @@ public class Line {
     /**
      * Set path effect for this line, note: it will slow down drawing, try to not use complicated effects,
      * DashPathEffect should be safe choice.
-     *
-     * @param pathEffect
      */
     public void setPathEffect(PathEffect pathEffect) {
         this.pathEffect = pathEffect;
@@ -298,9 +266,7 @@ public class Line {
     }
 
     public Line setFormatter(LineChartValueFormatter formatter) {
-        if (null != formatter) {
-            this.formatter = formatter;
-        }
+        if (null != formatter) this.formatter = formatter;
         return this;
     }
 }

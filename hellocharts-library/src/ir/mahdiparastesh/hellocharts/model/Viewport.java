@@ -3,6 +3,8 @@ package ir.mahdiparastesh.hellocharts.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 /**
  * Partial copy of android.graphics.Rect but here the top should be greater then the bottom. Viewport holds 4 float
  * coordinates for a chart extremes. The viewport is represented by the coordinates of its 4 edges (left, top, right
@@ -16,7 +18,7 @@ public class Viewport implements Parcelable {
     public float top;
     public float right;
     public float bottom;
-    public static final Parcelable.Creator<Viewport> CREATOR = new Parcelable.Creator<Viewport>() {
+    public static final Parcelable.Creator<Viewport> CREATOR = new Parcelable.Creator<>() {
         /**
          * Return a new viewport from the data in the specified parcel.
          */
@@ -63,7 +65,7 @@ public class Viewport implements Parcelable {
      */
     public Viewport(Viewport v) {
         if (v == null) {
-            left = top = right = bottom = 0.0f;
+            left = top = right = bottom = 0f;
         } else {
             left = v.left;
             top = v.top;
@@ -335,6 +337,7 @@ public class Viewport implements Parcelable {
         return intersect(v.left, v.top, v.right, v.bottom);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Viewport [left=" + left + ", top=" + top + ", right=" + right + ", bottom=" + bottom + "]";

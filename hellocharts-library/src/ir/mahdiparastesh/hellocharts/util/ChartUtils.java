@@ -1,8 +1,6 @@
 package ir.mahdiparastesh.hellocharts.util;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.util.TypedValue;
 
 public abstract class ChartUtils {
 
@@ -13,20 +11,13 @@ public abstract class ChartUtils {
     public static final int COLOR_GREEN = Color.parseColor("#99CC00");
     public static final int COLOR_ORANGE = Color.parseColor("#FFBB33");
     public static final int COLOR_RED = Color.parseColor("#FF4444");
-    public static final int[] COLORS = new int[]{COLOR_BLUE, COLOR_VIOLET, COLOR_GREEN, COLOR_ORANGE, COLOR_RED};
+    public static final int[] COLORS =
+            new int[]{COLOR_BLUE, COLOR_VIOLET, COLOR_GREEN, COLOR_ORANGE, COLOR_RED};
     private static final float DARKEN_SATURATION = 1.1f;
     private static final float DARKEN_INTENSITY = 0.9f;
-    private static int COLOR_INDEX = 0;
 
-    public static final int pickColor() {
+    public static int pickColor() {
         return COLORS[(int) Math.round(Math.random() * (COLORS.length - 1))];
-    }
-
-    public static final int nextColor() {
-        if (COLOR_INDEX >= COLORS.length) {
-            COLOR_INDEX = 0;
-        }
-        return COLORS[COLOR_INDEX++];
     }
 
     public static int dp2px(float density, int dp) {
@@ -35,10 +26,6 @@ public abstract class ChartUtils {
         }
         return (int) (dp * density + 0.5f);
 
-    }
-
-    public static int px2dp(float density, int px) {
-        return (int) Math.ceil(px / density);
     }
 
     public static int sp2px(float scaledDensity, int sp) {
@@ -52,11 +39,6 @@ public abstract class ChartUtils {
         return (int) Math.ceil(px / scaledDensity);
     }
 
-    public static int mm2px(Context context, int mm) {
-        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, mm, context.getResources()
-                .getDisplayMetrics()) + 0.5f);
-    }
-
     public static int darkenColor(int color) {
         float[] hsv = new float[3];
         int alpha = Color.alpha(color);
@@ -66,5 +48,4 @@ public abstract class ChartUtils {
         int tempColor = Color.HSVToColor(hsv);
         return Color.argb(alpha, Color.red(tempColor), Color.green(tempColor), Color.blue(tempColor));
     }
-
 }
