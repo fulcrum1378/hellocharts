@@ -1,9 +1,9 @@
 # HelloCharts for Android
 
-Charting library for Android compatible with API 17+ (Android 4.2).
-
-[![Release](https://img.shields.io/github/release/lecho/hellocharts-android.svg?label=JitPack.io)](
-https://jitpack.io/#lecho/hellocharts-android)
+Improved and modernised version of [https://github.com/lecho/hellocharts-android](
+Leszek Wach (@lecho)'s Charting library for Android), compatible with API 17+ (Android 4.2).
+[![Release](https://img.shields.io/github/release/fulcrum6378/HelloCharts.svg?label=JitPack.io)](
+https://jitpack.io/#fulcrum6378/HelloCharts)
 
 ## Features
 
@@ -128,4 +128,3 @@ Every chart view can be defined in layout xml file:
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
