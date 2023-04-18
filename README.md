@@ -1,16 +1,9 @@
 # HelloCharts for Android
 
-Charting library for Android compatible with API 8+(Android 2.2).
-Works best when hardware acceleration is available, so API 14+(Android 4.0) is recommended.
-Apache License 2.0.
+Charting library for Android compatible with API 17+ (Android 4.2).
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-HelloCharts%20for%20Android-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1068)
-<a href="https://scan.coverity.com/projects/4121">
-  <img alt="Coverity Scan Build Status"
-       src="https://scan.coverity.com/projects/4121/badge.svg"/>
-</a>
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.lecho/hellocharts-library/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.lecho/hellocharts-library)
-[![Release](https://img.shields.io/github/release/lecho/hellocharts-android.svg?label=JitPack.io)](https://jitpack.io/#lecho/hellocharts-android)
+[![Release](https://img.shields.io/github/release/lecho/hellocharts-android.svg?label=JitPack.io)](
+https://jitpack.io/#lecho/hellocharts-android)
 
 ## Features
 
@@ -26,9 +19,7 @@ Apache License 2.0.
 
 ## Screens and Demos
 
- - Code of a demo application is in `hellocharts-samples` directory, requires appcompat v21. 
- - The **demo app** is also ready for download on [**Google Play**](https://play.google.com/store/apps/details?id=ir.mahdiparastesh.hellocharts.samples).  
- - Short **video** is available on [**YouTube**](https://www.youtube.com/watch?v=xbSBjyjH2SY).
+ - Code of a demo application is in `hellocharts-samples` directory.
 
 ![](screens/scr_dependecy_preview.gif)
 
@@ -47,33 +38,18 @@ Apache License 2.0.
 ## Download and Import
 
 #### Android Studio/Gradle
-
- - Maven Central/jCenter, add dependency to your `build.gradle`:
- 
- ```groovy
-	dependencies{
- 		compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
-	}
- ```
  
  - JitPack.io, add `jitpack.io` repositiory and dependency to your `build.gradle`:
  
  ```groovy
     repositories {
-        maven {
-            url "https://jitpack.io"
-        }
+        maven { url 'https://jitpack.io' }
     }
 	
     dependencies {
-        compile 'com.github.lecho:hellocharts-android:v1.5.8'
+        implementation 'com.github.fulcrum6378:hellocharts:v2.6.5'
     }
  ```
- 
-#### Eclipse/ADT
-
- - Download the latest [release jar file](https://github.com/lecho/hellocharts-android/releases).
- - Copy `hellocharts-library-<version>.jar` into the `libs` folder of your application project.
 
 ## Usage
 
@@ -130,14 +106,11 @@ Every chart view can be defined in layout xml file:
     chart.setLineChartData(data);
  ```
 
- After the chart data has been set you can still modify its attributes but right after that you should call
- `set*ChartData()` method again to let chart recalculate and redraw data. There is also an option to use copy constructor for deep copy of
- chart data. You can safely modify copy in other threads and pass it to `set*ChartData()` method later.
+ After the chart data has been set you can still modify its attributes but right after that you
+ should call `set*ChartData()` method again to let chart recalculate and redraw data.
+ There is also an option to use copy constructor for deep copy of chart data.
+ You can safely modify copy in other threads and pass it to `set*ChartData()` method later.
 
-
-## Contributing
-
-Yes:) If you found a bug, have an idea how to improve library or have a question, please create new issue or comment existing one. If you would like to contribute code fork the repository and send a pull request.
 
 # License
 
@@ -156,8 +129,3 @@ Yes:) If you found a bug, have an idea how to improve library or have a question
     See the License for the specific language governing permissions and
     limitations under the License.
 
----
-     HelloCharts library uses code from InteractiveChart sample available 
-     on Android Developers page:
-	 
-       http://developer.android.com/training/gestures/scale.html

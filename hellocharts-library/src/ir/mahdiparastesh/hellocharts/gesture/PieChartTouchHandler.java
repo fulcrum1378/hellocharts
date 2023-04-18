@@ -5,25 +5,21 @@ import android.graphics.RectF;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-
-import androidx.core.widget.ScrollerCompat;
+import android.widget.OverScroller;
 
 import ir.mahdiparastesh.hellocharts.view.PieChartView;
 
 public class PieChartTouchHandler extends ChartTouchHandler {
 
     public static final int FLING_VELOCITY_DOWNSCALE = 4;
-
-    protected ScrollerCompat scroller;
-
+    protected OverScroller scroller;
     protected PieChartView pieChart;
-
     private boolean isRotationEnabled = true;
 
     public PieChartTouchHandler(Context context, PieChartView chart) {
         super(context, chart);
         pieChart = chart;
-        scroller = ScrollerCompat.create(context);
+        scroller = new OverScroller(context);
         gestureDetector = new GestureDetector(context, new ChartGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(context, new ChartScaleGestureListener());
         isZoomEnabled = false;// Zoom is not supported by PieChart.
@@ -31,9 +27,7 @@ public class PieChartTouchHandler extends ChartTouchHandler {
 
     @Override
     public boolean computeScroll() {
-        if (!isRotationEnabled) {
-            return false;
-        }
+        if (!isRotationEnabled) return false;
         if (scroller.computeScrollOffset()) {
             pieChart.setChartRotation(scroller.getCurrY(), false);
             // pieChart.setChartRotation() will invalidate view so no need to return true;

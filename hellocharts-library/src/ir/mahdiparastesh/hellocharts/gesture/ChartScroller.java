@@ -3,8 +3,7 @@ package ir.mahdiparastesh.hellocharts.gesture;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
-
-import androidx.core.widget.ScrollerCompat;
+import android.widget.OverScroller;
 
 import ir.mahdiparastesh.hellocharts.calculator.ChartCalculator;
 import ir.mahdiparastesh.hellocharts.model.Viewport;
@@ -12,11 +11,11 @@ import ir.mahdiparastesh.hellocharts.model.Viewport;
 public class ChartScroller {
 
     private final Viewport scrollerStartViewport = new Viewport(); // Used only for zooms and flings
-    private final Point surfaceSizeBuffer = new Point();// Used for scroll and flings
-    private final ScrollerCompat scroller;
+    private final Point surfaceSizeBuffer = new Point(); // Used for scroll and flings
+    private final OverScroller scroller;
 
     public ChartScroller(Context context) {
-        scroller = ScrollerCompat.create(context);
+        scroller = new OverScroller(context);
     }
 
     public void startScroll(ChartCalculator calculator) {

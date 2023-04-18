@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class AboutActivity extends AppCompatActivity {
-    public static final String GITHUB_URL = "github.com/lecho/hellocharts-android";
 
     public static Pair<String, Integer> getAppVersionAndBuild(Context context) {
         try {
@@ -52,7 +51,8 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment()).commit();
         }
     }
 
@@ -69,7 +69,8 @@ public class AboutActivity extends AppCompatActivity {
             version.setText(getAppVersionAndBuild(getActivity()).first);
 
             TextView gotToGithub = rootView.findViewById(R.id.go_to_github);
-            gotToGithub.setOnClickListener(v -> launchWebBrowser(getActivity(), GITHUB_URL));
+            gotToGithub.setOnClickListener(v -> launchWebBrowser(getActivity(),
+                    "github.com/fulcrum6378/hellocharts"));
             return rootView;
         }
     }

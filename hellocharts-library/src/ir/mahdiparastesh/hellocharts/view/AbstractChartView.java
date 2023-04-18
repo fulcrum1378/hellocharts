@@ -10,9 +10,7 @@ import androidx.core.view.ViewCompat;
 
 import ir.mahdiparastesh.hellocharts.animation.ChartAnimationListener;
 import ir.mahdiparastesh.hellocharts.animation.ChartDataAnimator;
-import ir.mahdiparastesh.hellocharts.animation.ChartDataAnimatorV14;
 import ir.mahdiparastesh.hellocharts.animation.ChartViewportAnimator;
-import ir.mahdiparastesh.hellocharts.animation.ChartViewportAnimatorV14;
 import ir.mahdiparastesh.hellocharts.calculator.ChartCalculator;
 import ir.mahdiparastesh.hellocharts.gesture.ChartTouchHandler;
 import ir.mahdiparastesh.hellocharts.gesture.ContainerScrollType;
@@ -49,8 +47,8 @@ public abstract class AbstractChartView extends View implements Chart {
         touchHandler = new ChartTouchHandler(context, this);
         axesRenderer = new AxesRenderer(context, this);
 
-        this.viewportAnimator = new ChartViewportAnimatorV14(this);
-        this.dataAnimator = new ChartDataAnimatorV14(this);
+        this.viewportAnimator = new ChartViewportAnimator(this);
+        this.dataAnimator = new ChartDataAnimator(this);
     }
 
     @Override

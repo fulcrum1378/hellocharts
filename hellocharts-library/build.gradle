@@ -32,7 +32,12 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    publishing { singleVariant("release") {} }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {

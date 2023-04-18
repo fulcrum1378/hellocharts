@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import androidx.core.view.ViewCompat;
 
 import ir.mahdiparastesh.hellocharts.animation.PieChartRotationAnimator;
-import ir.mahdiparastesh.hellocharts.animation.PieChartRotationAnimatorV14;
 import ir.mahdiparastesh.hellocharts.gesture.PieChartTouchHandler;
 import ir.mahdiparastesh.hellocharts.listener.DummyPieChartOnValueSelectListener;
 import ir.mahdiparastesh.hellocharts.listener.PieChartOnValueSelectListener;
@@ -37,7 +36,7 @@ public class PieChartView extends AbstractChartView implements PieChartDataProvi
         pieChartRenderer = new PieChartRenderer(context, this, this);
         touchHandler = new PieChartTouchHandler(context, this);
         setChartRenderer(pieChartRenderer);
-        this.rotationAnimator = new PieChartRotationAnimatorV14(this);
+        this.rotationAnimator = new PieChartRotationAnimator(this);
         setPieChartData(PieChartData.generateDummyData());
     }
 
