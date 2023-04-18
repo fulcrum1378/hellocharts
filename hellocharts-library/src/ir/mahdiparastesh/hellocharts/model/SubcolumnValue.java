@@ -121,9 +121,9 @@ public class SubColumnValue {
 
     @Override
     public int hashCode() {
-        int result = (value != 0.0f ? Float.floatToIntBits(value) : 0);
-        result = 31 * result + (originValue != 0.0f ? Float.floatToIntBits(originValue) : 0);
-        result = 31 * result + (diff != 0.0f ? Float.floatToIntBits(diff) : 0);
+        int result = (value != 0f ? Float.floatToIntBits(value) : 0);
+        result = 31 * result + (originValue != 0f ? Float.floatToIntBits(originValue) : 0);
+        result = 31 * result + (diff != 0f ? Float.floatToIntBits(diff) : 0);
         result = 31 * result + color;
         result = 31 * result + darkenColor;
         result = 31 * result + (label != null ? Arrays.hashCode(label) : 0);
