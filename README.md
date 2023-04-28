@@ -1,25 +1,25 @@
 # HelloCharts for Android
 
-Improved and modernised version of [https://github.com/lecho/hellocharts-android](
-Leszek Wach (@lecho)'s Charting library for Android), compatible with API 17+ (Android 4.2).
+Improved and modernised version of [Leszek Wach (@lecho)'s Charting library for Android](
+https://github.com/lecho/hellocharts-android), compatible with API 17+ (Android 4.2).
 [![Release](https://img.shields.io/github/release/fulcrum6378/HelloCharts.svg?label=JitPack.io)](
 https://jitpack.io/#fulcrum6378/HelloCharts)
 
 ## Features
 
- - Line chart(cubic lines, filled lines, scattered points)
- - Column chart(grouped, stacked, negative values)
- - Pie chart
- - Bubble chart
- - Combo chart(columns/lines)
- - Preview charts(for column chart and line chart)
- - Zoom(pinch to zoom, double tap zoom), scroll and fling
- - Custom and auto-generated axes(top, bottom, left, right, inside)
- - Animations
+- Line chart(cubic lines, filled lines, scattered points)
+- Column chart(grouped, stacked, negative values)
+- Pie chart
+- Bubble chart
+- Combo chart (columns / lines)
+- Preview charts(for column chart and line chart)
+- Zoom(pinch to zoom, double tap zoom), scroll and fling
+- Custom and auto-generated axes(top, bottom, left, right, inside)
+- Animations
 
 ## Screens and Demos
 
- - Code of a demo application is in `hellocharts-samples` directory.
+- Code of a demo application is in `hellocharts-samples` directory.
 
 ![](screens/scr_dependecy_preview.gif)
 
@@ -38,9 +38,9 @@ https://jitpack.io/#fulcrum6378/HelloCharts)
 ## Download and Import
 
 #### Android Studio/Gradle
- 
- - JitPack.io, add `jitpack.io` repositiory and dependency to your `build.gradle`:
- 
+
+- JitPack.io, add `jitpack.io` repositiory and dependency to your `build.gradle`:
+
  ```groovy
     repositories {
         maven { url 'https://jitpack.io' }
@@ -56,20 +56,21 @@ https://jitpack.io/#fulcrum6378/HelloCharts)
 Every chart view can be defined in layout xml file:
 
  ```xml
-    <ir.mahdiparastesh.hellocharts.view.LineChartView
+
+<ir.mahdiparastesh.hellocharts.view.LineChartView
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
  ```
 
- or created in code and added to layout later:
+or created in code and added to layout later:
 
  ```java
     LineChartView chart = new LineChartView(context);
     layout.addView(chart);
  ```
 
- Use methods from *Chart classes to define chart behaviour, example methods:
+Use methods from *Chart classes to define chart behaviour, example methods:
 
  ```java
     Chart.setInteractive(boolean isInteractive);
@@ -77,7 +78,7 @@ Every chart view can be defined in layout xml file:
     Chart.setContainerScrollEnabled(boolean isEnabled, ContainerScrollType type);
  ```
 
- Use methods from data models to define how chart looks like, example methods:
+Use methods from data models to define how chart looks like, example methods:
 
  ```java
     ChartData.setAxisXBottom(Axis axisX);
@@ -85,7 +86,7 @@ Every chart view can be defined in layout xml file:
     Line.setStrokeWidth(int strokeWidthDp);
  ```
 
- Every chart has its own method to set chart data and its own data model, example for line chart:
+Every chart has its own method to set chart data and its own data model, example for line chart:
 
  ```java
     List<PointValue> values = new ArrayList<PointValue>();
@@ -106,11 +107,10 @@ Every chart view can be defined in layout xml file:
     chart.setLineChartData(data);
  ```
 
- After the chart data has been set you can still modify its attributes but right after that you
- should call `set*ChartData()` method again to let chart recalculate and redraw data.
- There is also an option to use copy constructor for deep copy of chart data.
- You can safely modify copy in other threads and pass it to `set*ChartData()` method later.
-
+After the chart data has been set you can still modify its attributes but right after that you
+should call `set*ChartData()` method again to let chart recalculate and redraw data.
+There is also an option to use copy constructor for deep copy of chart data.
+You can safely modify copy in other threads and pass it to `set*ChartData()` method later.
 
 # License
 
