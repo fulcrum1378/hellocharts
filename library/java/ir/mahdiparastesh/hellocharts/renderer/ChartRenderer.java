@@ -53,4 +53,18 @@ public interface ChartRenderer {
     void selectValue(SelectedValue selectedValue);
 
     SelectedValue getSelectedValue();
+
+    /**
+     * Controls the margin inside a label. (Added by Mahdi)
+     *
+     * @see ir.mahdiparastesh.hellocharts.view.Chart#setLabelMargin(int)
+     */
+    void setLabelMargin(int labelMargin);
+
+    /**
+     * Controls the distance between a chart item and its label. (Added by Mahdi)
+     *
+     * @see ir.mahdiparastesh.hellocharts.view.Chart#setLabelOffset(int)
+     */
+    void setLabelOffset(int labelOffset);
 }

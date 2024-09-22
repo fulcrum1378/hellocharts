@@ -80,6 +80,10 @@ public class LineChartActivity extends AppCompatActivity {
             // Disable viewport recalculations, see toggleCubic() method for more info.
             chart.setViewportCalculationEnabled(false);
 
+            // Set margin and offset for labels
+            chart.setLabelMargin(10);
+            chart.setLabelOffset(80);
+
             resetViewport();
 
             return rootView;

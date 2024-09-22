@@ -24,7 +24,9 @@ public class ColumnChartData extends AbstractChartData {
         setColumns(columns);
     }
 
-    /** Copy constructor for deep copy. */
+    /**
+     * Copy constructor for deep copy.
+     */
     public ColumnChartData(ColumnChartData data) {
         super(data);
         this.isStacked = data.isStacked;
@@ -77,7 +79,9 @@ public class ColumnChartData extends AbstractChartData {
         return isStacked;
     }
 
-    /** Set true if you want stacked column chart. */
+    /**
+     * Set true if you want stacked column chart.
+     */
     public ColumnChartData setStacked(boolean isStacked) {
         this.isStacked = isStacked;
         return this;
@@ -102,12 +106,16 @@ public class ColumnChartData extends AbstractChartData {
         return this;
     }
 
-    /** @see #setBaseValue(float) */
+    /**
+     * @see #setBaseValue(float)
+     */
     public float getBaseValue() {
         return baseValue;
     }
 
-    /** Set value below which values will be drawn as negative, by default 0. */
+    /**
+     * Set value below which values will be drawn as negative, by default 0.
+     */
     public ColumnChartData setBaseValue(float baseValue) {
         this.baseValue = baseValue;
         return this;

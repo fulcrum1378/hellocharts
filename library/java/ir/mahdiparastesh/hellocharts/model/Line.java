@@ -10,7 +10,9 @@ import ir.mahdiparastesh.hellocharts.formatter.SimpleLineChartValueFormatter;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/** Single line for line chart. */
+/**
+ * Single line for line chart.
+ */
 public class Line {
     private static final int DEFAULT_LINE_STROKE_WIDTH_DP = 3;
     private static final int DEFAULT_POINT_RADIUS_DP = 6;
@@ -19,7 +21,9 @@ public class Line {
     private int color = ChartUtils.DEFAULT_COLOR;
     private int pointColor = UNINITIALIZED;
     private int darkenColor = ChartUtils.DEFAULT_DARKEN_COLOR;
-    /** Transparency of area when line is filled. */
+    /**
+     * Transparency of area when line is filled.
+     */
     private int areaTransparency = DEFAULT_AREA_TRANSPARENCY;
     private int strokeWidth = DEFAULT_LINE_STROKE_WIDTH_DP;
     private int pointRadius = DEFAULT_POINT_RADIUS_DP;
@@ -121,12 +125,16 @@ public class Line {
         return darkenColor;
     }
 
-    /** @see #setAreaTransparency(int) */
+    /**
+     * @see #setAreaTransparency(int)
+     */
     public int getAreaTransparency() {
         return areaTransparency;
     }
 
-    /** Set area transparency(255 is full opacity) for filled lines. */
+    /**
+     * Set area transparency(255 is full opacity) for filled lines.
+     */
     public Line setAreaTransparency(int areaTransparency) {
         this.areaTransparency = areaTransparency;
         return this;
@@ -171,7 +179,9 @@ public class Line {
         return this;
     }
 
-    /** @see #setHasLabelsOnlyForSelected(boolean) */
+    /**
+     * @see #setHasLabelsOnlyForSelected(boolean)
+     */
     public boolean hasLabelsOnlyForSelected() {
         return hasLabelsOnlyForSelected;
     }
@@ -192,7 +202,9 @@ public class Line {
         return pointRadius;
     }
 
-    /** Set radius for points for this line. */
+    /**
+     * Set radius for points for this line.
+     */
     public Line setPointRadius(int pointRadius) {
         this.pointRadius = pointRadius;
         return this;
@@ -238,12 +250,16 @@ public class Line {
         return this;
     }
 
-    /** @see #setShape(ValueShape) */
+    /**
+     * @see #setShape(ValueShape)
+     */
     public ValueShape getShape() {
         return shape;
     }
 
-    /** Set shape for points, possible values: SQUARE, CIRCLE */
+    /**
+     * Set shape for points, possible values: SQUARE, CIRCLE
+     */
     public Line setShape(ValueShape shape) {
         this.shape = shape;
         return this;

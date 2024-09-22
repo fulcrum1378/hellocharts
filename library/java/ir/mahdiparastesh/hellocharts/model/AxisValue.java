@@ -33,7 +33,9 @@ public class AxisValue {
         return label;
     }
 
-    /** Set custom label for this axis value. */
+    /**
+     * Set custom label for this axis value.
+     */
     public AxisValue setLabel(String label) {
         this.label = label.toCharArray();
         return this;
@@ -43,7 +45,9 @@ public class AxisValue {
         return label;
     }
 
-    /** Set custom label for this axis value. */
+    /**
+     * Set custom label for this axis value.
+     */
     public AxisValue setLabel(char[] label) {
         this.label = label;
         return this;

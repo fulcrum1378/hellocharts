@@ -3,7 +3,9 @@ package ir.mahdiparastesh.hellocharts.util;
 public class FloatUtils {
     public static final int[] POW10 = {1, 10, 100, 1000, 10000, 100000, 1000000};
 
-    /** Returns next bigger double value considering precision of the argument. */
+    /**
+     * Returns next bigger double value considering precision of the argument.
+     */
     public static double nextUp(double d) {
         if (Double.isNaN(d) || d == Double.POSITIVE_INFINITY) {
             return d;

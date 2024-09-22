@@ -1,9 +1,7 @@
 # HelloCharts for Android
 
 Improved and modernised version of [Leszek Wach (@lecho)'s Charting library for Android](
-https://github.com/lecho/hellocharts-android), compatible with API 17+ (Android 4.2).
-[![Release](https://img.shields.io/github/release/fulcrum6378/HelloCharts.svg?label=JitPack.io)](
-https://jitpack.io/#fulcrum6378/HelloCharts)
+https://github.com/lecho/hellocharts-android)
 
 ## Features
 
@@ -47,7 +45,7 @@ https://jitpack.io/#fulcrum6378/HelloCharts)
     }
 	
     dependencies {
-        implementation 'com.github.fulcrum6378:hellocharts:v2.6.5'
+        implementation 'com.github.fulcrum6378:hellocharts:v2.8.5'
     }
  ```
 

@@ -161,4 +161,14 @@ public abstract class AbstractChartRenderer implements ChartRenderer {
     public SelectedValue getSelectedValue() {
         return selectedValue;
     }
+
+    @Override
+    public void setLabelMargin(int labelMargin) {
+        this.labelMargin = labelMargin;
+    }
+
+    @Override
+    public void setLabelOffset(int labelOffset) {
+        this.labelOffset = labelOffset;
+    }
 }

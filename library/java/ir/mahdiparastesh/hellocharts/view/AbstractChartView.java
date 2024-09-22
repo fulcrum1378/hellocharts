@@ -458,4 +458,14 @@ public abstract class AbstractChartView extends View implements Chart {
             return currentViewport.left > maximumViewport.left;
         else return currentViewport.right < maximumViewport.right;
     }
+
+    @Override
+    public void setLabelMargin(int labelMargin) {
+        this.chartRenderer.setLabelMargin(labelMargin);
+    }
+
+    @Override
+    public void setLabelOffset(int labelOffset) {
+        this.chartRenderer.setLabelOffset(labelOffset);
+    }
 }

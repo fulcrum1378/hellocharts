@@ -11,7 +11,7 @@ android {
         applicationId = "ir.mahdiparastesh.hellocharts"
         minSdk = project.properties["MIN_SDK_VERSION"].toString().toInt()
         targetSdk = project.properties["SDK_VERSION"].toString().toInt()
-        versionCode = 2
+        versionCode = 1
         versionName = project.properties["VERSION_NAME"].toString()
     }
 

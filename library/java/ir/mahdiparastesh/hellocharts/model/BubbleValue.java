@@ -7,30 +7,50 @@ import java.util.Arrays;
 import ir.mahdiparastesh.hellocharts.util.ChartUtils;
 import ir.mahdiparastesh.hellocharts.view.Chart;
 
-/** Single value drawn as bubble on BubbleChart. */
+/**
+ * Single value drawn as bubble on BubbleChart.
+ */
 public class BubbleValue {
 
-    /** Current X value. */
+    /**
+     * Current X value.
+     */
     private float x;
-    /** Current Y value. */
+    /**
+     * Current Y value.
+     */
     private float y;
-    /** Current Z value , third bubble value interpreted as bubble area. */
+    /**
+     * Current Z value , third bubble value interpreted as bubble area.
+     */
     private float z;
 
-    /** Origin X value, used during value animation. */
+    /**
+     * Origin X value, used during value animation.
+     */
     private float originX;
-    /** Origin Y value, used during value animation. */
+    /**
+     * Origin Y value, used during value animation.
+     */
     private float originY;
-    /** Origin Z value, used during value animation. */
+    /**
+     * Origin Z value, used during value animation.
+     */
     private float originZ;
 
-    /** Difference between originX value and target X value. */
+    /**
+     * Difference between originX value and target X value.
+     */
     private float diffX;
 
-    /** Difference between originX value and target X value. */
+    /**
+     * Difference between originX value and target X value.
+     */
     private float diffY;
 
-    /** Difference between originX value and target X value. */
+    /**
+     * Difference between originX value and target X value.
+     */
     private float diffZ;
     private int color = ChartUtils.DEFAULT_COLOR;
     private int darkenColor = ChartUtils.DEFAULT_DARKEN_COLOR;

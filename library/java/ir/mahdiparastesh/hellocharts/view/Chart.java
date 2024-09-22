@@ -107,4 +107,18 @@ public interface Chart {
     boolean isContainerScrollEnabled();
 
     void setContainerScrollEnabled(boolean isContainerScrollEnabled, ContainerScrollType containerScrollType);
+
+    /**
+     * Controls the margin inside a label. (Added by Mahdi)
+     *
+     * @see ChartRenderer#setLabelMargin(int)
+     */
+    void setLabelMargin(int labelMargin);
+
+    /**
+     * Controls the distance between a chart item and its label. (Added by Mahdi)
+     *
+     * @see ChartRenderer#setLabelOffset(int)
+     */
+    void setLabelOffset(int labelOffset);
 }
